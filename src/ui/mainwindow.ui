@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>812</width>
+    <height>779</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>791</width>
+      <height>761</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="layout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>6</number>
+     </property>
+     <property name="rightMargin">
+      <number>6</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QTabWidget" name="tbwMain">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tabServices">
+        <attribute name="title">
+         <string>Services</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_8">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>761</width>
+           <height>661</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="layServices">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="gbxProfile">
+            <property name="title">
+             <string>Profile</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="horizontalLayoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>171</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="layProfile">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QComboBox" name="cbxProfile"/>
+              </item>
+              <item>
+               <spacer name="hspProfile">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="gbxJackSvc">
+            <property name="title">
+             <string>JACK Status</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="gridLayoutWidget_2">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>221</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="layJackSvc">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item row="4" column="4">
+               <widget class="QLabel" name="lblDspLoad">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="lblSampleRateLbl">
+                <property name="text">
+                 <string>Sample Rate:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLabel" name="lblDspLoadLbl">
+                <property name="text">
+                 <string>DSP Load:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLabel" name="lblBufSize">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="lblBufSizeLbl">
+                <property name="text">
+                 <string>Buffer Size:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLabel" name="lblSampleRate">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="lblXrunsLbl">
+                <property name="text">
+                 <string>Xruns:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="4">
+               <widget class="QLabel" name="lblXruns">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="QLabel" name="lblBlkLatencyLbl">
+                <property name="text">
+                 <string>Block Latency:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="4">
+               <widget class="QLabel" name="lblBlkLatency">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="2">
+               <widget class="QLabel" name="lblStatusJackLbl">
+                <property name="text">
+                 <string>Service Status:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="4">
+               <widget class="QLabel" name="lblStatusJack">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QToolButton" name="tbnStartJack">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="toolButtonStyle">
+                 <enum>Qt::ToolButtonTextUnderIcon</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="3">
+               <widget class="QLabel" name="lblStatusJackIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="4">
+               <widget class="QCheckBox" name="chkAutoStartJack">
+                <property name="text">
+                 <string>Auto-start</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <spacer name="hspJackL">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="7" column="5">
+               <spacer name="hspJackR">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="gbxA2j">
+            <property name="title">
+             <string>ALSA Bridge</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="gridLayoutWidget_3">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>81</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="layA2j">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item row="0" column="4">
+               <widget class="QLabel" name="lblStatusA2j">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="lblStatusA2jLbl">
+                <property name="text">
+                 <string>Service Status:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <spacer name="hspA2jL">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="5">
+               <spacer name="hspA2jR">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLabel" name="lblStatusA2jIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QToolButton" name="tbnStartA2j">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="toolButtonStyle">
+                 <enum>Qt::ToolButtonTextUnderIcon</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <widget class="QCheckBox" name="chkAutoStartA2j">
+                <property name="text">
+                 <string>Auto-start</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="vspServices">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tabJack">
+        <attribute name="title">
+         <string>JACK</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_5">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>761</width>
+           <height>661</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="layJack">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="gbxJackProps">
+            <property name="title">
+             <string>Properties</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="gridLayoutWidget_8">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>135</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="layJackProps">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="chkVerbose">
+                <property name="toolTip">
+                 <string>Verbose mode</string>
+                </property>
+                <property name="text">
+                 <string>Verbose</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <spacer name="hspProps">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>1</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="lblTimeout">
+                <property name="toolTip">
+                 <string>Client timeout in milliseconds</string>
+                </property>
+                <property name="text">
+                 <string>Client timeout:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="chkRealtime">
+                <property name="toolTip">
+                 <string>Whether to use realtime scheduling</string>
+                </property>
+                <property name="text">
+                 <string>Realtime</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QSpinBox" name="sbxRtPrio">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="lblRtPrio">
+                <property name="toolTip">
+                 <string>Scheduler priority when running in realtime mode</string>
+                </property>
+                <property name="text">
+                 <string>Realtime priority:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="chkTemporary">
+                <property name="toolTip">
+                 <string>Exit once all clients have closed their connections</string>
+                </property>
+                <property name="text">
+                 <string>Temporary</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="chkAliases">
+                <property name="toolTip">
+                 <string>Use system port aliases instead of system:playback_*</string>
+                </property>
+                <property name="text">
+                 <string>Use aliases</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="lblPortMax">
+                <property name="toolTip">
+                 <string>Maximum number of ports</string>
+                </property>
+                <property name="text">
+                 <string>Port Max:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QSpinBox" name="sbxTimeout">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="suffix">
+                 <string> ms</string>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QSpinBox" name="sbxPortMax">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximum">
+                 <number>2048</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="layJackH">
+            <item>
+             <widget class="QGroupBox" name="gbxClockSrc">
+              <property name="title">
+               <string>Clock Source</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <widget class="QWidget" name="verticalLayoutWidget_3">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>351</width>
+                 <height>66</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="layClockSrc">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetNoConstraint</enum>
+                </property>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QRadioButton" name="rbnSystem">
+                  <property name="text">
+                   <string>system</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="rbnHpet">
+                  <property name="text">
+                   <string>hpet</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="gbxAdvanced">
+              <property name="title">
+               <string>Advanced</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <widget class="QWidget" name="verticalLayoutWidget_6">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>351</width>
+                 <height>66</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="layAdvanced">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetNoConstraint</enum>
+                </property>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QCheckBox" name="chkSvrSync">
+                  <property name="text">
+                   <string>Server Synchronous Mode</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="chkMemReg">
+                  <property name="text">
+                   <string>Replace Shared Memory Registry</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="gbxAutoConn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Auto Connect Mode</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="verticalLayoutWidget_7">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>156</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="layAutoConn">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QRadioButton" name="rbnNoRestrict">
+                <property name="text">
+                 <string>Don't restrict auto connect requests</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbnFailExt">
+                <property name="text">
+                 <string>Fail auto connect requests to external ports only</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbnIgnoreExt">
+                <property name="text">
+                 <string>Ignore auto connect requests to external ports only</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbnFailAll">
+                <property name="text">
+                 <string>Fail all auto connect requests</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="rbnIgnoreAll">
+                <property name="text">
+                 <string>Ignore all auto connect requests</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="vspJack">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tabDriver">
+        <attribute name="title">
+         <string>Driver</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>761</width>
+           <height>661</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="layDriver">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="layDriverSet">
+            <item>
+             <widget class="QComboBox" name="cbxDriver">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string>ALSA</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>CoreAudio</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>PortAudio</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dummy</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>FireWire</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Loopback</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Net</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>NetOne</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="hspDriverR">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="gbxDevice">
+            <property name="title">
+             <string>Device</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="gridLayoutWidget_4">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>198</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="layDevice">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item row="2" column="0">
+               <widget class="QLabel" name="lblDevOut">
+                <property name="text">
+                 <string>Output Device:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="sbxChanIn"/>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="lblChanOut">
+                <property name="text">
+                 <string>Output Channels:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QCheckBox" name="chkDuplex">
+                <property name="text">
+                 <string>Duplex Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QCheckBox" name="chkMonitor">
+                <property name="text">
+                 <string>Monitor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="cbxDevOut"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="lblDevIn">
+                <property name="text">
+                 <string>Input Device:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="lblDevice">
+                <property name="text">
+                 <string>Device / interface:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="cbxDevice"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="lblChanIn">
+                <property name="text">
+                 <string>Input Channels:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="cbxDevIn"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="sbxChanOut"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QCheckBox" name="chkMonitorHw">
+                <property name="text">
+                 <string>Hardware Monitoring</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QCheckBox" name="chkMeterHw">
+                <property name="text">
+                 <string>Hardware Metering</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QCheckBox" name="chkAliasesHw">
+                <property name="text">
+                 <string>Hardware Aliases</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="layDriverH">
+            <item>
+             <widget class="QGroupBox" name="gbxProps">
+              <property name="title">
+               <string>Properties</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <widget class="QWidget" name="gridLayoutWidget_5">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>351</width>
+                 <height>195</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="layProps">
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item row="4" column="1">
+                 <widget class="QCheckBox" name="chkSoftMode">
+                  <property name="text">
+                   <string>Soft Mode</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblBufSizeSet">
+                  <property name="text">
+                   <string>Buffer Size:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="lblDithMode">
+                  <property name="text">
+                   <string>Dithering Mode:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="cbxSampleRate"/>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QSpinBox" name="sbxBufferN"/>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lblSampleRateSet">
+                  <property name="text">
+                   <string>Sample Rate:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QComboBox" name="cbxBufSize">
+                  <item>
+                   <property name="text">
+                    <string>16</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>32</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>64</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>128</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>256</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>512</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>1024</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2048</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>4096</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>8192</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="lblBufferN">
+                  <property name="text">
+                   <string>Periods / Buffer:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QComboBox" name="cbxDithMode">
+                  <item>
+                   <property name="text">
+                    <string>None</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Rectangular</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Shaped</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Triangular</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QCheckBox" name="chkForce16Bit">
+                  <property name="text">
+                   <string>Force 16 Bit</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="layDriverBR">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QGroupBox" name="gbxLatencySet">
+                <property name="title">
+                 <string>Extra Latency</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <widget class="QWidget" name="gridLayoutWidget_6">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>30</y>
+                   <width>341</width>
+                   <height>72</height>
+                  </rect>
+                 </property>
+                 <layout class="QGridLayout" name="layLatencySet">
+                  <property name="sizeConstraint">
+                   <enum>QLayout::SetNoConstraint</enum>
+                  </property>
+                  <property name="leftMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>6</number>
+                  </property>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="sbxLatencyIn">
+                    <property name="suffix">
+                     <string> frames</string>
+                    </property>
+                    <property name="maximum">
+                     <number>99999</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblLatencyIn">
+                    <property name="text">
+                     <string>Input Latency:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="lblLatencyOut">
+                    <property name="text">
+                     <string>Output Latency:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="sbxLatencyOut">
+                    <property name="suffix">
+                     <string> frames</string>
+                    </property>
+                    <property name="maximum">
+                     <number>99999</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="gbxMisc">
+                <property name="title">
+                 <string>Misc</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <widget class="QWidget" name="gridLayoutWidget_7">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>30</y>
+                   <width>341</width>
+                   <height>41</height>
+                  </rect>
+                 </property>
+                 <layout class="QGridLayout" name="layMisc">
+                  <property name="sizeConstraint">
+                   <enum>QLayout::SetNoConstraint</enum>
+                  </property>
+                  <property name="leftMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>6</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>6</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblMidiDriver">
+                    <property name="text">
+                     <string>MIDI Driver:</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="cbxMidiDriver">
+                    <item>
+                     <property name="text">
+                      <string>None</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>ALSA Sequencer</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>ALSA Raw-MIDI</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="vspDriver">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tabSystem">
+        <attribute name="title">
+         <string>System</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>761</width>
+           <height>661</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="laySystem">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="gbxSysInfo">
+            <property name="title">
+             <string>System Information</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="gridLayoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>731</width>
+               <height>131</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="laySysInfo">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <property name="leftMargin">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>6</number>
+              </property>
+              <property name="rightMargin">
+               <number>6</number>
+              </property>
+              <property name="bottomMargin">
+               <number>6</number>
+              </property>
+              <item row="4" column="1">
+               <widget class="QLabel" name="lblGovernorLbl">
+                <property name="text">
+                 <string>Governor:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLabel" name="lblUsrAudioGrp"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="lblKernelVerLbl">
+                <property name="text">
+                 <string>Kernel / Version</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="lblUsrAudioGrpLbl">
+                <property name="text">
+                 <string>User in audio group:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="lblOSLbl">
+                <property name="text">
+                 <string>Operating System:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <spacer name="hspSystemL">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="6">
+               <spacer name="hspSystemR">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="lblUsrRtGrpLbl">
+                <property name="text">
+                 <string>User in realtime group:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QLabel" name="lblUsrAudioGrpIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLabel" name="lblUsrRtGrpIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="4">
+               <widget class="QLabel" name="lblGovernor"/>
+              </item>
+              <item row="3" column="4">
+               <widget class="QLabel" name="lblUsrRtGrp"/>
+              </item>
+              <item row="1" column="4">
+               <widget class="QLabel" name="lblKernelVer"/>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLabel" name="lblOS"/>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLabel" name="lblKernelVerIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLabel" name="lblOSIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="3">
+               <widget class="QLabel" name="lblGovernorIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="vspSystem">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>1</width>
+              <height>1</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tabLog">
+        <attribute name="title">
+         <string>Log</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_9">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>761</width>
+           <height>661</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="layLog">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+         </layout>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="layButtonsH">
+       <item>
+        <widget class="QPushButton" name="pbnReset">
+         <property name="text">
+          <string>&amp;Reset</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resources.qrc">
+           <normaloff>:/icons/clean.png</normaloff>:/icons/clean.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="hspButtons">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbnCancel">
+         <property name="text">
+          <string>&amp;Cancel</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resources.qrc">
+           <normaloff>:/icons/cancel.png</normaloff>:/icons/cancel.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbnSave">
+         <property name="text">
+          <string>&amp;Save</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resources.qrc">
+           <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

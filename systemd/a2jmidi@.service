@@ -1,0 +1,11 @@
+[Unit]
+Description=ALSA to JACK Bridge using %i profile
+Requires=jack@%i.service
+After=jack@%i.service
+
+[Service]
+ExecStart=/usr/bin/a2jmidid --export-hw
+ExecStartPre=/usr/bin/jack_wait -w
+
+[Install]
+WantedBy=multi-user.target
