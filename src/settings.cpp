@@ -27,7 +27,6 @@
 
 #include <getopt.h>
 
-#include "src/utils.h"
 #include "src/device.h"
 
 namespace jack

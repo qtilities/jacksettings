@@ -15,7 +15,6 @@
 */
 #include "src/driver.h"
 #include "src/device.h"
-#include "src/utils.h"
 
 #include <CLI/CLI.hpp>
 
