@@ -1,6 +1,6 @@
 # JACK Settings
 
-*** This is alpha-stage software and not fully functional yet. ***
+***This is alpha-stage software and not fully functional yet.***
 
 ![](screenshot.png)
 
@@ -16,4 +16,4 @@ This application uses the [CLI11 command line parser].
 
 [Cadence]: https://kx.studio/Applications:Cadence
 [systemd service]: https://github.com/jackaudio/jack2/tree/master/systemd
-[CLI command line parser]: https://github.com/CLIUtils/CLI11
+[CLI11 command line parser]: https://github.com/CLIUtils/CLI11
