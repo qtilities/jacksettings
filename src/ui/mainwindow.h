@@ -56,7 +56,7 @@ private:
 	void onClickedReset();
 	void onClickedSave();
 	void setEnabledButtons(bool enable);
-	void enableButtons();
+	void onSettingsChanged();
 
 	void onAboutToQuit();
 	void onJackActiveStateChanged();

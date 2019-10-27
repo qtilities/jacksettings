@@ -19,7 +19,6 @@
 #include "src/servicecontrol.h"
 #include "src/userinfo.h"
 #include "src/osinfo.h"
-#include "src/utils.h"
 
 #include <QCloseEvent>
 #include <QDir>
@@ -233,39 +232,39 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	connect(icoTray, &QSystemTrayIcon::activated,
 					this, &MainWindow::iconActivated);
 
-	connect(ui->rbnSystem,     &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnHpet,       &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnNoRestrict, &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnFailExt,    &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnIgnoreExt,  &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnFailAll,    &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->rbnIgnoreAll,  &QRadioButton::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkRealtime,   &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkSvrSync,    &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkTemporary,  &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkVerbose,    &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->sbxTimeout,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxPortMax,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxRtPrio,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
+	connect(ui->rbnSystem,     &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnHpet,       &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnNoRestrict, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnFailExt,    &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnIgnoreExt,  &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnFailAll,    &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->rbnIgnoreAll,  &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkRealtime,   &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkSvrSync,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkTemporary,  &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkVerbose,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxTimeout,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxPortMax,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxRtPrio,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 
-	connect(ui->cbxDevice,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxDevIn,      QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxDevOut,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxSampleRate, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxBufSize,    QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxDithMode,   QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->cbxMidiDriver, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::enableButtons);
-	connect(ui->chkDuplex,     &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkMonitor,    &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkMonitorHw,  &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkMeterHw,    &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkSoftMode,   &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->chkForce16Bit, &QCheckBox::clicked, this, &MainWindow::enableButtons);
-	connect(ui->sbxChanIn,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxChanOut,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxBufferN,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxLatencyIn,  QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
-	connect(ui->sbxLatencyOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::enableButtons);
+	connect(ui->cbxDevice,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxDevIn,      QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxDevOut,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxSampleRate, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxBufSize,    QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxDithMode,   QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->cbxMidiDriver, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->chkDuplex,     &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkMonitor,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkMonitorHw,  &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkMeterHw,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkSoftMode,   &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->chkForce16Bit, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxChanIn,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxChanOut,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxBufferN,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxLatencyIn,  QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+	connect(ui->sbxLatencyOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 
 	setCentralWidget(ui->centralwidget);
 	setWindowTitle(tr("JACK Settings"));
@@ -372,8 +371,23 @@ void MainWindow::setEnabledButtons(bool enable)
 	ui->pbnReset->setEnabled(enable);
 	ui->pbnSave->setEnabled(enable);
 }
-void MainWindow::enableButtons()
+void MainWindow::onSettingsChanged()
 {
+	if (!ui->chkDuplex->isChecked())
+	{
+		ui->cbxDevIn->setEnabled(false);
+		ui->cbxDevOut->setEnabled(false);
+		ui->cbxDevice->setEnabled(true);
+	}
+	else
+	{
+		ui->cbxDevIn->setEnabled(true);
+		ui->cbxDevOut->setEnabled(true);
+		if (ui->cbxDevIn->currentIndex() > 0 || ui->cbxDevOut->currentIndex() > 0)
+			ui->cbxDevice->setEnabled(false);
+		else
+			ui->cbxDevice->setEnabled(true);
+	}
 	setEnabledButtons(true);
 }
 void MainWindow::onJackActiveStateChanged()
@@ -524,11 +538,15 @@ void MainWindow::updateDriverSettings()
 	jack::Driver::AlsaMidiType alsaMidiType =
 		static_cast<jack::Driver::AlsaMidiType>(ui->cbxMidiDriver->currentIndex());
 
-	if (ui->cbxDevIn->currentIndex() > 0)
+	if (ui->cbxDevIn->currentIndex() > 0 && ui->chkDuplex->isChecked())
 		settings->setDeviceInputName(ui->cbxDevIn->currentText());
+	else
+		settings->setDeviceInputName(QString());
 
-	if (ui->cbxDevOut->currentIndex() > 0)
+	if (ui->cbxDevOut->currentIndex() > 0 && ui->chkDuplex->isChecked())
 		settings->setDeviceOutputName(ui->cbxDevOut->currentText());
+	else
+		settings->setDeviceOutputName(QString());
 
 	settings->setDeviceName(ui->cbxDevice->currentText());
 	settings->setInputChannelCount(ui->sbxChanIn->value());
