@@ -10,5 +10,6 @@
         <file>icons/device.png</file>
         <file>icons/arch.png</file>
         <file>icons/save.png</file>
+        <file>translations/jacksettings_it.qm</file>
     </qresource>
 </RCC>

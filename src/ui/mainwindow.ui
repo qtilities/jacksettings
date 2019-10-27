@@ -10,9 +10,6 @@
     <height>779</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -1175,54 +1172,57 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QComboBox" name="cbxBufSize">
+                  <property name="currentText">
+                   <string notr="true">16</string>
+                  </property>
                   <item>
                    <property name="text">
-                    <string>16</string>
+                    <string notr="true">16</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>32</string>
+                    <string notr="true">32</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>64</string>
+                    <string notr="true">64</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>128</string>
+                    <string notr="true">128</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>256</string>
+                    <string notr="true">256</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>512</string>
+                    <string notr="true">512</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>1024</string>
+                    <string notr="true">1024</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>2048</string>
+                    <string notr="true">2048</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>4096</string>
+                    <string notr="true">4096</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>8192</string>
+                    <string notr="true">8192</string>
                    </property>
                   </item>
                  </widget>

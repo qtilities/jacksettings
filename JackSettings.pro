@@ -47,6 +47,8 @@ LIBS += -ljack -lasound
 
 RESOURCES += resources/resources.qrc
 
+TRANSLATIONS += resources/translations/jacksettings_it.ts
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
