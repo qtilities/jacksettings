@@ -3,5 +3,5 @@
 set -e
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-  sudo apt-get -y install libgl1-mesa-dev qt512base
+  sudo apt-get -y install libasound2-dev libjack-jackd2-dev libgl1-mesa-dev qt512base
 fi
