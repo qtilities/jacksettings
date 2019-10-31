@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
+    <width>811</width>
     <height>779</height>
    </rect>
   </property>
@@ -131,16 +131,16 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <widget class="QWidget" name="gridLayoutWidget_2">
+            <widget class="QWidget" name="verticalLayoutWidget_10">
              <property name="geometry">
               <rect>
                <x>10</x>
                <y>30</y>
                <width>731</width>
-               <height>221</height>
+               <height>228</height>
               </rect>
              </property>
-             <layout class="QGridLayout" name="layJackSvc">
+             <layout class="QVBoxLayout" name="layJackSvc">
               <property name="sizeConstraint">
                <enum>QLayout::SetNoConstraint</enum>
               </property>
@@ -156,169 +156,225 @@
               <property name="bottomMargin">
                <number>6</number>
               </property>
-              <item row="4" column="4">
-               <widget class="QLabel" name="lblDspLoad">
-                <property name="text">
-                 <string/>
+              <item>
+               <layout class="QGridLayout" name="gridJackSvc">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetNoConstraint</enum>
                 </property>
-               </widget>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item row="6" column="4">
+                 <widget class="QLabel" name="lblStatusJack">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="2">
+                 <widget class="QLabel" name="lblStatusJackLbl">
+                  <property name="text">
+                   <string>Service Status:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="3">
+                 <widget class="QLabel" name="lblStatusJackIcon">
+                  <property name="minimumSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="4">
+                 <widget class="QLabel" name="lblSampleRate">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="4">
+                 <widget class="QLabel" name="lblBlkLatency">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="4">
+                 <widget class="QLabel" name="lblBufSize">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="lblBufSizeLbl">
+                  <property name="text">
+                   <string>Buffer Size:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="4">
+                 <widget class="QLabel" name="lblXruns">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="4">
+                 <widget class="QLabel" name="lblDspLoad">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="5">
+                 <spacer name="hspJackR">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>1</width>
+                    <height>1</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLabel" name="lblXrunsLbl">
+                  <property name="text">
+                   <string>Xruns:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="2">
+                 <widget class="QLabel" name="lblBlkLatencyLbl">
+                  <property name="text">
+                   <string>Block Latency:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="2">
+                 <widget class="QLabel" name="lblDspLoadLbl">
+                  <property name="text">
+                   <string>DSP Load:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLabel" name="lblSampleRateLbl">
+                  <property name="text">
+                   <string>Sample Rate:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <spacer name="hspJackL">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>1</width>
+                    <height>1</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="1" column="2">
-               <widget class="QLabel" name="lblSampleRateLbl">
-                <property name="text">
-                 <string>Sample Rate:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <spacer name="vspBtnJackL">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="tbnStartJack">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="toolButtonStyle">
+                   <enum>Qt::ToolButtonTextUnderIcon</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="chkAutoStartJack">
+                  <property name="text">
+                   <string>Auto-start</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="vspBtnJackR">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="4" column="2">
-               <widget class="QLabel" name="lblDspLoadLbl">
-                <property name="text">
-                 <string>DSP Load:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="4">
-               <widget class="QLabel" name="lblBufSize">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLabel" name="lblBufSizeLbl">
-                <property name="text">
-                 <string>Buffer Size:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QLabel" name="lblSampleRate">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QLabel" name="lblXrunsLbl">
-                <property name="text">
-                 <string>Xruns:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="4">
-               <widget class="QLabel" name="lblXruns">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="2">
-               <widget class="QLabel" name="lblBlkLatencyLbl">
-                <property name="text">
-                 <string>Block Latency:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="4">
-               <widget class="QLabel" name="lblBlkLatency">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="2">
-               <widget class="QLabel" name="lblStatusJackLbl">
-                <property name="text">
-                 <string>Service Status:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="4">
-               <widget class="QLabel" name="lblStatusJack">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QToolButton" name="tbnStartJack">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>90</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="toolButtonStyle">
-                 <enum>Qt::ToolButtonTextUnderIcon</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="3">
-               <widget class="QLabel" name="lblStatusJackIcon">
-                <property name="minimumSize">
-                 <size>
-                  <width>16</width>
-                  <height>16</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="4">
-               <widget class="QCheckBox" name="chkAutoStartJack">
-                <property name="text">
-                 <string>Auto-start</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <spacer name="hspJackL">
+              <item>
+               <spacer name="vspJackSvc">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="7" column="5">
-               <spacer name="hspJackR">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
+                  <width>1</width>
+                  <height>1</height>
                  </size>
                 </property>
                </spacer>
@@ -335,16 +391,16 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <widget class="QWidget" name="gridLayoutWidget_3">
+            <widget class="QWidget" name="verticalLayoutWidget_11">
              <property name="geometry">
               <rect>
                <x>10</x>
                <y>30</y>
                <width>731</width>
-               <height>81</height>
+               <height>127</height>
               </rect>
              </property>
-             <layout class="QGridLayout" name="layA2j">
+             <layout class="QVBoxLayout" name="layA2j">
               <property name="sizeConstraint">
                <enum>QLayout::SetNoConstraint</enum>
               </property>
@@ -360,84 +416,140 @@
               <property name="bottomMargin">
                <number>6</number>
               </property>
-              <item row="0" column="4">
-               <widget class="QLabel" name="lblStatusA2j">
-                <property name="text">
-                 <string/>
+              <item>
+               <layout class="QGridLayout" name="gridA2j">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetNoConstraint</enum>
                 </property>
-               </widget>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item row="0" column="3">
+                 <widget class="QLabel" name="lblStatusA2jIcon">
+                  <property name="minimumSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="lblStatusA2jLbl">
+                  <property name="text">
+                   <string>Service Status:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="4">
+                 <widget class="QLabel" name="lblStatusA2j">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="5">
+                 <spacer name="hspA2jR">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="1" column="0">
+                 <spacer name="hspA2jL">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="lblStatusA2jLbl">
-                <property name="text">
-                 <string>Service Status:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
+              <item>
+               <layout class="QHBoxLayout" name="laySvcBtnA2j">
+                <item>
+                 <spacer name="hspBtnA2JL">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="tbnStartA2j">
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="toolButtonStyle">
+                   <enum>Qt::ToolButtonTextUnderIcon</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="chkAutoStartA2j">
+                  <property name="text">
+                   <string>Auto-start</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="hspBtnA2JR">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="1" column="0">
-               <spacer name="hspA2jL">
+              <item>
+               <spacer name="vspA2J">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
-                  <height>20</height>
+                  <width>1</width>
+                  <height>1</height>
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item row="1" column="5">
-               <spacer name="hspA2jR">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="0" column="3">
-               <widget class="QLabel" name="lblStatusA2jIcon">
-                <property name="minimumSize">
-                 <size>
-                  <width>16</width>
-                  <height>16</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="tbnStartA2j">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>90</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="toolButtonStyle">
-                 <enum>Qt::ToolButtonTextUnderIcon</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QCheckBox" name="chkAutoStartA2j">
-                <property name="text">
-                 <string>Auto-start</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </widget>
@@ -447,6 +559,9 @@
            <spacer name="vspServices">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
