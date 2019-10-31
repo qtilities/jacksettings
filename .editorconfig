@@ -8,6 +8,6 @@ insert_final_newline = 1
 trim_trailing_whitespace = 1
 charset = UTF-8
 
-[*.yml]
+[*.{yml,sh}]
 indent_style = space
 indent_size = 2

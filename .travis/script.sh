@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
   gcc -v && g++ -v && $SHELL --version

@@ -1,25 +1,42 @@
 language: cpp
 
-os:
-- linux
-#- osx
-
-dist: bionic
-#osx_image: xcode10.3
-
-addons:
-  apt:
-    sources:
-    - sourceline: "ppa:ubuntu-toolchain-r/test"
-    packages:
-    - gcc-9
-    - g++-9
+matrix:
+  include:
+# - os: osx
+#   osx_image: xcode10.3
+#   compiler: clang
+#   addons:
+#     homebrew:
+#       packages:
+#       - qt5
+#       - jack
+#
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    addons:
+      apt:
+        sources:
+        - sourceline: "ppa:ubuntu-toolchain-r/test"
+        - sourceline: "ppa:beineri/opt-qt-5.12.3-bionic"
+        packages:
+        - g++-9
+        - qt512base
+        - mesa-common-dev
+        - libasound2-dev
+        - libjack-jackd2-dev
+    env:
+      - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+      - QT=512
 
 before_install:
-- bash ${TRAVIS_BUILD_DIR}/.travis/before_install.sh
+- '[[ "$MATRIX_EVAL" == "" ]] || eval "${MATRIX_EVAL}"'
 
 install:
 - bash ${TRAVIS_BUILD_DIR}/.travis/install.sh
+
+before_script:
+- bash ${TRAVIS_BUILD_DIR}/.travis/before_script.sh
 
 script:
 - bash ${TRAVIS_BUILD_DIR}/.travis/script.sh
