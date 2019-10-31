@@ -22,6 +22,7 @@ matrix:
         packages:
         - g++-9
         - qt512base
+        - qt5-default
         - mesa-common-dev
         - libasound2-dev
         - libjack-jackd2-dev
