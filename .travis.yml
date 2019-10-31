@@ -1,0 +1,33 @@
+language: cpp
+
+matrix:
+  include:
+  - os: linux
+    dist: xenial
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-8
+        - g++-8
+    env:
+    - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
+# - os: osx
+#   osx_image: xcode10.1
+
+before_install:
+- sh ${TRAVIS_BUILD_DIR}/.travis/before_install.sh
+
+install:
+- sh ${TRAVIS_BUILD_DIR}/.travis/install.sh
+
+script:
+- sh ${TRAVIS_BUILD_DIR}/.travis/script.sh
+
+after_failure:
+- sh ${TRAVIS_BUILD_DIR}/.travis/after_failure.sh
+
+after_success:
+- sh ${TRAVIS_BUILD_DIR}/.travis/after_success.sh

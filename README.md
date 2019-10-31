@@ -1,5 +1,7 @@
 # JACK Settings
 
+[![Travis Build Status](https://img.shields.io/travis/com/azdrums/JACKSettings.svg?label=Linux&style=popout&logo=travis)](https://travis-ci.com/azdrums/JACKSettings)
+
 ***This is alpha-stage software and not fully functional yet.***
 
 ![](screenshot.png)
