@@ -114,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	ui->gbxJackSvc->setLayout(ui->layJackSvc);
 	ui->gbxProfile->setLayout(ui->layProfile);
 	ui->gbxSysInfo->setLayout(ui->laySysInfo);
+	ui->gbxPrefs->setLayout(ui->layPrefs);
 
 	ui->gbxDevice->setLayout(ui->layDevice);
 	ui->gbxProps->setLayout(ui->layProps);
@@ -314,6 +315,8 @@ void MainWindow::loadSettings()
 	resize(qSettings.value("Size", QSize(480, 600)).toSize());
 	move(qSettings.value("Position", QPoint(200, 200)).toPoint());
 	int index = qSettings.value("TabIndex", 0).toInt();
+	ui->chkMinimized->setChecked(qSettings.value("StartMinimized", false).toBool());
+	setVisible(!ui->chkMinimized->isChecked());
 	if (index < ui->tbwMain->count())
 			ui->tbwMain->setCurrentIndex(index);
 	qSettings.endGroup();
@@ -339,6 +342,7 @@ void MainWindow::saveSettings()
 	qSettings.setValue("Size",     this->size());
 	qSettings.setValue("Position", this->pos());
 	qSettings.setValue("TabIndex", ui->tbwMain->currentIndex());
+	qSettings.setValue("StartMinimized", ui->chkMinimized->isChecked());
 	qSettings.endGroup();
 
 	qSettings.beginGroup("System");

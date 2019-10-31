@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
 
 	MainWindow window;
 	window.setLogger(txtLog);
-	window.show();
 
 	return app.exec();
 }
