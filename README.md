@@ -6,7 +6,7 @@
 
 ![](screenshot.png)
 
-This is a simplified JACK settings mimic of [Cadence],
+This is a simplified JACK settings application mimic of [Cadence],
 but using a user [systemd service].
 
 This application uses the [CLI11 command line parser].
