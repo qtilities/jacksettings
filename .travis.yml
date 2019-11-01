@@ -29,6 +29,7 @@ matrix:
     env:
       - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
       - QT=512
+      - PROJECT_NAME="JACKSettings"
 
 before_install:
 - '[[ "$MATRIX_EVAL" == "" ]] || eval "${MATRIX_EVAL}"'

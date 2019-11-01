@@ -2,11 +2,11 @@
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100
-  gcc -v && g++ -v && $SHELL --version
+  ${SHELL} --version && gcc -v && qmake -v 
 
-  qmake JACKSettings.pro -spec linux-g++ CONFIG+=release PREFIX=/usr
+  qmake ${PROJECT_NAME}.pro -spec ${QMAKESPEC} CONFIG+=release PREFIX=/usr
   make -j$(nproc)
 elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-  qmake JACKSettings.pro -spec macx-clang CONFIG+=release
+  qmake ${PROJECT_NAME}.pro -spec ${QMAKESPEC} CONFIG+=release
   make -j$(sysctl -n hw.physicalcpu)
 fi
