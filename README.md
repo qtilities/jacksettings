@@ -2,12 +2,15 @@
 
 [![Travis Build Status](https://img.shields.io/travis/com/azdrums/JACKSettings.svg?label=Linux&style=popout&logo=travis)](https://travis-ci.com/azdrums/JACKSettings)
 
-***This is alpha-stage software and not fully functional yet.***
+***Work In Progress***
 
 ![](screenshot.png)
 
-This is a simplified JACK settings application mimic of [Cadence],
-but using a user [systemd service].
+I wanted to have a JACK server starting as a user [systemd service] at boot time
+instead of using `jackdbus` or starting it from an external application like
+[Cadence] or [QjackCtl], so I created this similar little application to satisfy
+my personal needs.
+If you like the idea and find it useful let me know.
 
 This application uses the [CLI11 command line parser].
 
@@ -17,5 +20,6 @@ This application uses the [CLI11 command line parser].
 	where `jack@.service` is installed)
 
 [Cadence]: https://kx.studio/Applications:Cadence
+[QjackCtl]: https://github.com/rncbc/qjackctl
 [systemd service]: https://github.com/jackaudio/jack2/tree/master/systemd
 [CLI11 command line parser]: https://github.com/CLIUtils/CLI11
