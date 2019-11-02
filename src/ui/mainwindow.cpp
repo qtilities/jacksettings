@@ -144,18 +144,35 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	}
 
 	OsInfo osInfo;
+#ifdef Q_OS_LINUX
 	QString governor;
-	ui->lblGovernorIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
+	bool hasPerformance = false;
 	for (QString gov: osInfo.governors())
 	{
 		governor = gov;
-		if (governor != "performance")
+		if (governor == "performance")
 		{
-			ui->lblGovernorIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
+			hasPerformance = true;
+			continue;
+		}
+		else
+		{
+			hasPerformance = false;
 			break;
 		}
 	}
+	if (hasPerformance)
+		ui->lblGovernorIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
+	else
+		ui->lblGovernorIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
+
 	ui->lblGovernor->setText(governor);
+
+	if (osInfo.isRealtime())
+		ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
+	else
+		ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
+#endif
 	ui->lblOS->setText(osInfo.name());
 	setOsPixmap(osInfo.name());
 	ui->lblKernelVer->setText(osInfo.version());

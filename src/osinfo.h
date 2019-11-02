@@ -27,6 +27,7 @@ public:
 
 #ifdef Q_OS_LINUX
 	QVector<QString> governors() const {return governors_;}
+	bool isRealtime() const {return realtime;}
 #endif
 	QString name() const;
 	QString version() const;
@@ -36,6 +37,7 @@ private:
 	QString name_;
 #ifdef Q_OS_LINUX
 	QVector<QString> governors_;
+	bool realtime;
 #endif
 	short cpuCount_;
 };

@@ -51,6 +51,13 @@ OsInfo::OsInfo(QObject *parent) : QObject(parent)
 			governors_.push_back(file.readLine().simplified());
 		}
 	}
+	proc.start("zcat /proc/config.gz");
+	proc.waitForFinished();
+	realtime = false;
+	QString output(proc.readAllStandardOutput());
+	if (output.contains("CONFIG_PREEMPT_RT=y") ||
+			output.contains("CONFIG_PREEMPT_RT_FULL=y"))
+		realtime = true;
 #endif
 
 	QString osName(QSysInfo::productType());
