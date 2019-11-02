@@ -1,5 +1,10 @@
 language: cpp
 
+env:
+  global:
+  - PROJECT_NAME="JACKSettings"
+  - PROJECT_TARGET="jacksettings"
+
 matrix:
   include:
 # - os: osx
@@ -10,7 +15,8 @@ matrix:
 #       packages:
 #       - qt5
 #       - jack
-#
+#       update: true
+
   - os: linux
     dist: bionic
     compiler: gcc
@@ -28,8 +34,6 @@ matrix:
         - libjack-jackd2-dev
     env:
       - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
-      - QT=512
-      - PROJECT_NAME="JACKSettings"
 
 before_install:
 - '[[ "$MATRIX_EVAL" == "" ]] || eval "${MATRIX_EVAL}"'
