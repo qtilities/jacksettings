@@ -4,8 +4,6 @@
 
 ***Work In Progress***
 
-![](screenshot.png)
-
 I wanted to have a JACK server starting as a user [systemd service] at boot time
 instead of using `jackdbus` or starting it from an external application like
 [Cadence] or [QjackCtl], so I created this similar little application to satisfy
@@ -18,6 +16,8 @@ This application uses the [CLI11 command line parser].
 
 - copy `systemd/a2jmidid@.service` into `/usr/lib/systemd/user` (same folder
 	where `jack@.service` is installed)
+
+![](screenshot.png)
 
 [Cadence]: https://kx.studio/Applications:Cadence
 [QjackCtl]: https://github.com/rncbc/qjackctl
