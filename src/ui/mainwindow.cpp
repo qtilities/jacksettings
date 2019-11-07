@@ -423,8 +423,8 @@ void MainWindow::onJackActiveStateChanged()
 		actJack->setIcon(QIcon::fromTheme("media-playback-stop"));
 		actJack->setText(tr("Stop JACK Server"));
 
-		setWindowIcon(QIcon(":/icons/on.png"));
-		icoTray->setIcon(QIcon(":/icons/on.png"));
+		setWindowIcon(QIcon(":/icons/icon.png"));
+		icoTray->setIcon(QIcon(":/icons/icon.png"));
 		updateJackStatus();
 	}
 	else

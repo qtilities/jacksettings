@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=JACKSettings
+GenericName=JACK settings using jackd via systemd
+Comment=JACK settings using jackd via systemd
+Exec=jacksettings
+Icon=jacksettings
+Categories=AudioVideo;Audio;Music;Midi;

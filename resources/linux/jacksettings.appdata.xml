@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 RedTide <redtid3@gmail.com> -->
+<component type="desktop">
+ <id>org.azdrums.jacksettings</id>
+ <metadata_license>FSFAP</metadata_license>
+ <project_license>GPL-2.0+</project_license>
+ <name>JACKSettings</name>
+ <summary>JACK settings using jackd via systemd</summary>
+ <description>
+  <p>JACKSettings is a Qt application made to help to setup JACK configuration
+  running jackd as a systemd service.</p>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image>https://github.com/azdrums/jacksettings/blob/master/screenshot.png</image>
+   <caption>The main window</caption>
+  </screenshot>
+ </screenshots>
+ <launchable type="desktop-id">jacksettings.desktop</launchable>
+ <provides>
+​  <binary>jacksettings</binary>
+​ </provides>
+ <keywords>
+  <keyword>ALSA</keyword>
+  <keyword>Audio</keyword>
+  <keyword>JACK</keyword>
+  <keyword>MIDI</keyword>
+ </keywords>
+ <url type="homepage">https://azdrums.github.io/jacksettings</url>
+ <project_group>AZDrums</project_group>
+ <developer_name>RedTide</developer_name>
+ <update_contact>redtid3@gmail.com</update_contact>
+</component>

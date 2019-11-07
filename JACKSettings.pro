@@ -50,10 +50,31 @@ RESOURCES += resources/resources.qrc
 TRANSLATIONS += resources/translations/jacksettings_it.ts
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+qnx {
+	target.path = /tmp/$${TARGET}/bin
+}
+unix:!android {
+		desktop.files = resources/linux/$${TARGET}.desktop
+		desktop.path  = /usr/share/applications/
 
+		icon.files = resources/icons/icon.png
+		icon.path  = /usr/share/$${TARGET}/icons/
+
+		translations.files = resources/translations/*.qm
+		translations.path  = /usr/share/$${TARGET}/translations/
+
+		target.files = $${TARGET}
+		target.path  = /usr/bin
+
+		INSTALLS += desktop icon translations target
+}
+win32 {
+		RC_FILE = resources/icons/icon.rc
+}
+mac {
+		CONFIG += app_bundle
+		ICON    = resources/icons/icon.icns
+}
 DISTFILES += .editorconfig \
 						 README.md \
 						 TODO.md
