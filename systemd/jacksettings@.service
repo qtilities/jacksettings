@@ -1,0 +1,10 @@
+[Unit]
+Description=JACKSettings using %i profile
+Requires=jack@%i.service
+After=jack@%i.service
+
+[Service]
+ExecStart=/usr/bin/jacksettings
+
+[Install]
+WantedBy=multi-user.target
