@@ -13,13 +13,13 @@
 
 	For a full copy of the GNU General Public License see the LICENSE file
 */
-#include "osinfo.h"
+#include "sysinfo.h"
 
 #include <QFile>
 #include <QProcess>
 #include <QSysInfo>
 
-OsInfo::OsInfo(QObject *parent) : QObject(parent)
+SysInfo::SysInfo(QObject *parent) : QObject(parent)
 {
 #ifdef Q_OS_LINUX
 	QProcess proc;
@@ -70,15 +70,15 @@ OsInfo::OsInfo(QObject *parent) : QObject(parent)
 	name_= osName; // TODO
 #endif
 }
-QString OsInfo::name() const
+QString SysInfo::name() const
 {
 	return name_;
 }
-QString OsInfo::version() const
+QString SysInfo::version() const
 {
 	return QSysInfo::kernelVersion();
 }
-int OsInfo::cpuCount() const
+int SysInfo::cpuCount() const
 {
 	return cpuCount_;
 }

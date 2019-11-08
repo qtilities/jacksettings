@@ -25,7 +25,8 @@ class UserInfo : public QObject
 public:
 	explicit UserInfo(QObject *parent = nullptr);
 
-	QString userName()              const {return username;}
+	QString name() const {return username;}
+
 	QString inAudioGroupLabel()     const {return inAudioGrpLabel;}
 	QString inRealtimeGroupLabel()  const {return inRealtimeGrpLabel;}
 	QPixmap inAudioGroupPixmap()    const {return inAudioGrpPixmap;}

@@ -18,12 +18,12 @@
 #include <QObject>
 #include <QVector>
 
-class OsInfo : public QObject
+class SysInfo : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit OsInfo(QObject *parent = nullptr);
+	explicit SysInfo(QObject *parent = nullptr);
 
 #ifdef Q_OS_LINUX
 	QVector<QString> governors() const {return governors_;}

@@ -62,6 +62,7 @@
     <message>
         <location filename="../../src/ui/mainwindow.ui" line="350"/>
         <location filename="../../src/ui/mainwindow.ui" line="522"/>
+        <location filename="../../src/ui/mainwindow.ui" line="1817"/>
         <source>Auto-start</source>
         <translation>Avvio Automatico</translation>
     </message>
@@ -446,22 +447,22 @@
         <translation>Avvia Ridotto a Icona</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.ui" line="1852"/>
+        <location filename="../../src/ui/mainwindow.ui" line="1859"/>
         <source>Log</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.ui" line="1889"/>
+        <location filename="../../src/ui/mainwindow.ui" line="1896"/>
         <source>&amp;Reset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.ui" line="1913"/>
+        <location filename="../../src/ui/mainwindow.ui" line="1920"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annulla</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.ui" line="1924"/>
+        <location filename="../../src/ui/mainwindow.ui" line="1931"/>
         <source>&amp;Save</source>
         <translation>&amp;Salva</translation>
     </message>
@@ -471,61 +472,53 @@
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="288"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="287"/>
         <source>JACK Settings</source>
         <translation>Impostazioni JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="418"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="450"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="421"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="453"/>
         <source>Started</source>
         <translation>Avviato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="421"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="453"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="424"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="456"/>
         <source>Stop</source>
         <translation>Ferma</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="424"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="427"/>
         <source>Stop JACK Server</source>
         <translation>Ferma Server JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="432"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="460"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="435"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="463"/>
         <source>Stopped</source>
         <translation>Fermato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="435"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="463"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="438"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="466"/>
         <source>Start</source>
         <translation>Avvia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="438"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="441"/>
         <source>Start JACK Server</source>
         <translation>Avvia Server JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="456"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="459"/>
         <source>Stop ALSA Bridge</source>
         <translation>Ferma ALSA Bridge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="466"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="469"/>
         <source>Start ALSA Bridge</source>
         <translation>Avvia ALSA Bridge</translation>
-    </message>
-</context>
-<context>
-    <name>OsInfo</name>
-    <message>
-        <location filename="../../src/osinfo.cpp" line="46"/>
-        <source>&lt;invalid&gt;</source>
-        <translation>&lt;invalido&gt;</translation>
     </message>
 </context>
 <context>
@@ -539,6 +532,14 @@
         <location filename="../../src/main.cpp" line="33"/>
         <source>I couldn&apos;t detect any system tray on this system.</source>
         <translation>Non riesco a rilevare alcuna system tray in questo sistema.</translation>
+    </message>
+</context>
+<context>
+    <name>SysInfo</name>
+    <message>
+        <location filename="../../src/sysinfo.cpp" line="46"/>
+        <source>&lt;invalid&gt;</source>
+        <translation>&lt;non valido&gt;</translation>
     </message>
 </context>
 <context>

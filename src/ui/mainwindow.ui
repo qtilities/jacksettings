@@ -1812,6 +1812,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QCheckBox" name="chkAutoStart">
+                <property name="text">
+                 <string>Auto-start</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="vspPrefs">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>

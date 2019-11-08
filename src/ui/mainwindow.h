@@ -59,17 +59,15 @@ private:
 	void onSettingsChanged();
 
 	void onAboutToQuit();
-	void onJackActiveStateChanged();
-	void onJackStartStop();
-
-	void setJackEnabled(bool enabled);
 
 	void resetJackStatus();
 	void updateJackStatus();
 
 	void onA2jActiveStateChanged();
 	void onA2jStartStop();
-	void setA2jEnabled(bool enabled);
+
+	void onJackActiveStateChanged();
+	void onJackStartStop();
 
 	void updateJackSettingsUI();
 	void updateDriverSettingsUI();
@@ -93,8 +91,9 @@ private:
 	std::array<QRadioButton *, 2> grpClockSource;
 	std::array<QRadioButton *, 5> grpAutoConnect;
 
+	ServiceControl *appService;
 	ServiceControl *jackService;
-	ServiceControl *a2jmidiService;
+	ServiceControl *a2jService;
 
 	jack_client_t *jackClient;
 	int	           xRunCount;

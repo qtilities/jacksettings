@@ -18,7 +18,7 @@
 #include "ui_mainwindow.h"
 #include "src/servicecontrol.h"
 #include "src/userinfo.h"
-#include "src/osinfo.h"
+#include "src/sysinfo.h"
 
 #include <QCloseEvent>
 #include <QDir>
@@ -143,11 +143,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 			ui->cbxSampleRate->addItem(QString::number(sampleRate));
 	}
 
-	OsInfo osInfo;
+	SysInfo sysInfo;
 #ifdef Q_OS_LINUX
 	QString governor;
 	bool hasPerformance = false;
-	for (QString gov: osInfo.governors())
+	for (QString gov: sysInfo.governors())
 	{
 		governor = gov;
 		if (governor == "performance")
@@ -168,14 +168,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 	ui->lblGovernor->setText(governor);
 
-	if (osInfo.isRealtime())
+	if (sysInfo.isRealtime())
 		ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
 	else
 		ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
 #endif
-	ui->lblOS->setText(osInfo.name());
-	setOsPixmap(osInfo.name());
-	ui->lblKernelVer->setText(osInfo.version());
+	ui->lblOS->setText(sysInfo.name());
+	setOsPixmap(sysInfo.name());
+	ui->lblKernelVer->setText(sysInfo.version());
 
 	UserInfo userInfo;
 	ui->lblUsrAudioGrp->setText(userInfo.inAudioGroupLabel());
@@ -216,8 +216,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 		updateJackStatus();
 	}
-	jackService    = new ServiceControl("jack@"    + settings->profileName() + ".service", this);
-	a2jmidiService = new ServiceControl("a2jmidi@" + settings->profileName() + ".service", this);
+	appService  = new ServiceControl("jacksettings@" + userInfo.name() + ".service", this);
+	jackService = new ServiceControl("jack@" + settings->profileName() + ".service", this);
+	a2jService  = new ServiceControl("a2jmidi@" + settings->profileName() + ".service", this);
 	enumerateProfiles();
 	updateJackSettingsUI();
 	updateDriverSettingsUI();
@@ -240,15 +241,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	connect(ui->tbnStartJack, &QToolButton::clicked,
 					this, &MainWindow::onJackStartStop);
 
-	connect(a2jmidiService, &ServiceControl::sigActiveStateChanged,
+	connect(a2jService, &ServiceControl::sigActiveStateChanged,
 					this, &MainWindow::onA2jActiveStateChanged);
 	onA2jActiveStateChanged();
 
-	connect(ui->tbnStartA2j, &QToolButton::clicked,
-					this, &MainWindow::onA2jStartStop);
+	connect(ui->tbnStartA2j, &QToolButton::clicked, this, &MainWindow::onA2jStartStop);
 
-	connect(icoTray, &QSystemTrayIcon::activated,
-					this, &MainWindow::iconActivated);
+	connect(icoTray, &QSystemTrayIcon::activated, this, &MainWindow::iconActivated);
 
 	connect(ui->rbnSystem,     &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
 	connect(ui->rbnHpet,       &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
@@ -304,9 +303,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 void MainWindow::onAboutToQuit()
 {
-	setJackEnabled(ui->chkAutoStartJack->isChecked());
-	setA2jEnabled(ui->chkAutoStartA2j->isChecked());
+	ui->chkAutoStartJack->isChecked() ? jackService->enable() : jackService->disable();
+	ui->chkAutoStartA2j->isChecked()  ? a2jService->enable() : a2jService->disable();
+	ui->chkAutoStart->isChecked()     ? appService->enable() : appService->disable();
 	saveSettings();
+
 //	jack_client_close(jackClient);
 	delete ui;
 }
@@ -339,6 +340,7 @@ void MainWindow::loadSettings()
 	qSettings.endGroup();
 
 	qSettings.beginGroup("System");
+	ui->chkAutoStart->setChecked(qSettings.value("AutoStart", false).toBool());
 	ui->chkAutoStartJack->setChecked(qSettings.value("AutoStartJack", false).toBool());
 	ui->chkAutoStartA2j->setChecked(qSettings.value("AutoStartAlsaBridge", false).toBool());
 	QString profileName(qSettings.value("CurrentProfile", "default").toString());
@@ -363,6 +365,7 @@ void MainWindow::saveSettings()
 	qSettings.endGroup();
 
 	qSettings.beginGroup("System");
+	qSettings.setValue("AutoStart", ui->chkAutoStart->isChecked());
 	qSettings.setValue("AutoStartJack", ui->chkAutoStartJack->isChecked());
 	qSettings.setValue("AutoStartAlsaBridge", ui->chkAutoStartA2j->isChecked());
 	qSettings.setValue("CurrentProfile", settings->profileName());
@@ -445,7 +448,7 @@ void MainWindow::onJackActiveStateChanged()
 }
 void MainWindow::onA2jActiveStateChanged()
 {
-	if (a2jmidiService->isRunning())
+	if (a2jService->isRunning())
 	{
 		ui->lblStatusA2j->setText(tr("Started"));
 		ui->lblStatusA2jIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
@@ -470,17 +473,9 @@ void MainWindow::onJackStartStop()
 {
 	jackService->isRunning() ? jackService->stop() : jackService->start();
 }
-void MainWindow::setJackEnabled(bool enabled)
-{
-	enabled ? jackService->enable() : jackService->disable();
-}
 void MainWindow::onA2jStartStop()
 {
-	a2jmidiService->isRunning() ? a2jmidiService->stop() : a2jmidiService->start();
-}
-void MainWindow::setA2jEnabled(bool enabled)
-{
-	enabled ? a2jmidiService->enable() : a2jmidiService->disable();
+	a2jService->isRunning() ? a2jService->stop() : a2jService->start();
 }
 void MainWindow::updateJackSettingsUI()
 {

@@ -24,7 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += src/main.cpp \
 					 src/device.cpp \
 					 src/driver.cpp \
-					 src/osinfo.cpp \
+					 src/sysinfo.cpp \
 					 src/servicecontrol.cpp \
 					 src/settings.cpp \
 					 src/ui/debuglogger.cpp \
@@ -34,7 +34,7 @@ HEADERS += src/ui/mainwindow.h \
 					 src/debugstream.h \
 					 src/device.h \
 					 src/driver.h \
-					 src/osinfo.h \
+					 src/sysinfo.h \
 					 src/servicecontrol.h \
 					 src/settings.h \
 					 src/ui/debuglogger.h \
