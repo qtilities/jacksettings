@@ -24,8 +24,10 @@
 #include <QDir>
 #include <QList>
 #include <QMenu>
+#include <QRadioButton>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QSystemTrayIcon>
 #include <QTextStream>
 
 #include <iostream>
@@ -126,6 +128,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	ui->gbxAdvanced->setLayout(ui->layAdvanced);
 	ui->gbxAutoConn->setLayout(ui->layAutoConn);
 
+	ui->layServices->addStretch();
+	ui->layJack->addStretch();
+	ui->layDriver->addStretch();
+	ui->laySystem->addStretch();
+
 	loadSettings();
 
 	ui->cbxDevIn->addItem(tr("None"));
@@ -142,7 +149,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 		foreach (uint sampleRate, sampleRates)
 			ui->cbxSampleRate->addItem(QString::number(sampleRate));
 	}
-
 	SysInfo sysInfo;
 #ifdef Q_OS_LINUX
 	QString governor;
@@ -216,7 +222,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 		updateJackStatus();
 	}
-	appService  = new ServiceControl("jacksettings@" + userInfo.name() + ".service", this);
 	jackService = new ServiceControl("jack@" + settings->profileName() + ".service", this);
 	a2jService  = new ServiceControl("a2jmidi@" + settings->profileName() + ".service", this);
 	enumerateProfiles();
@@ -247,8 +252,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
 	connect(ui->tbnStartA2j, &QToolButton::clicked, this, &MainWindow::onA2jStartStop);
 
-	connect(icoTray, &QSystemTrayIcon::activated, this, &MainWindow::iconActivated);
-
+	connect(icoTray, &QSystemTrayIcon::activated,
+					[=](QSystemTrayIcon::ActivationReason reason)
+	{
+	if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
+		setVisible(!isVisible());
+	});
 	connect(ui->rbnSystem,     &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
 	connect(ui->rbnHpet,       &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
 	connect(ui->rbnNoRestrict, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
@@ -305,23 +314,11 @@ void MainWindow::onAboutToQuit()
 {
 	ui->chkAutoStartJack->isChecked() ? jackService->enable() : jackService->disable();
 	ui->chkAutoStartA2j->isChecked()  ? a2jService->enable() : a2jService->disable();
-	ui->chkAutoStart->isChecked()     ? appService->enable() : appService->disable();
+	ui->chkAutoStart->isChecked()     ? createAutostartFile() : deleteAutostartFile();
 	saveSettings();
 
 //	jack_client_close(jackClient);
 	delete ui;
-}
-void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
-{
-	switch (reason)
-	{
-	case QSystemTrayIcon::Trigger:
-	case QSystemTrayIcon::DoubleClick:
-	{
-		setVisible(!isVisible());
-	}
-	default: ;
-	}
 }
 void MainWindow::loadSettings()
 {
@@ -604,6 +601,33 @@ void MainWindow::enumerateProfiles()
 		if (settings->save())
 			enumerateProfiles();
 	}
+}
+void MainWindow::createAutostartFile()
+{
+	QDir    configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+	QString filePath(configDir.filePath("autostart/jacksettings.desktop"));
+	QFile   file(filePath);
+
+	if (file.exists() || !file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+
+	QTextStream out(&file);
+	out << "[Desktop Entry]\n";
+	out << "Name=JACKSettings\n";
+	out << "Type=Application\n";
+	out << "Exec=jacksettings\n";
+	out << "Terminal=false\n";
+}
+void MainWindow::deleteAutostartFile()
+{
+	QDir    configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+	QString filePath(configDir.filePath("autostart/jacksettings.desktop"));
+	QFile   file(filePath);
+
+	if (!file.exists())
+		return;
+
+	file.remove();
 }
 void MainWindow::addXrun()
 {

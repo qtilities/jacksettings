@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QMessageBox>
+#include <QSystemTrayIcon>
 #include <QTranslator>
 
 int main(int argc, char *argv[])

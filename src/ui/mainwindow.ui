@@ -72,6 +72,12 @@
           </property>
           <item>
            <widget class="QGroupBox" name="gbxProfile">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="title">
              <string>Profile</string>
             </property>
@@ -84,7 +90,7 @@
                <x>10</x>
                <y>30</y>
                <width>731</width>
-               <height>171</height>
+               <height>61</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="layProfile">
@@ -397,7 +403,7 @@
                <x>10</x>
                <y>30</y>
                <width>731</width>
-               <height>127</height>
+               <height>129</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="layA2j">
@@ -433,16 +439,6 @@
                 <property name="bottomMargin">
                  <number>6</number>
                 </property>
-                <item row="0" column="3">
-                 <widget class="QLabel" name="lblStatusA2jIcon">
-                  <property name="minimumSize">
-                   <size>
-                    <width>16</width>
-                    <height>16</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
                 <item row="0" column="2">
                  <widget class="QLabel" name="lblStatusA2jLbl">
                   <property name="text">
@@ -453,6 +449,16 @@
                   </property>
                  </widget>
                 </item>
+                <item row="0" column="3">
+                 <widget class="QLabel" name="lblStatusA2jIcon">
+                  <property name="minimumSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
                 <item row="0" column="4">
                  <widget class="QLabel" name="lblStatusA2j">
                   <property name="text">
@@ -460,7 +466,7 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="5">
+                <item row="0" column="5">
                  <spacer name="hspA2jR">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -473,7 +479,7 @@
                   </property>
                  </spacer>
                 </item>
-                <item row="1" column="0">
+                <item row="0" column="0">
                  <spacer name="hspA2jL">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -538,38 +544,9 @@
                 </item>
                </layout>
               </item>
-              <item>
-               <spacer name="vspA2J">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>1</width>
-                  <height>1</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
              </layout>
             </widget>
            </widget>
-          </item>
-          <item>
-           <spacer name="vspServices">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -882,12 +859,6 @@
           </item>
           <item>
            <widget class="QGroupBox" name="gbxAutoConn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>200</height>
-             </size>
-            </property>
             <property name="title">
              <string>Auto Connect Mode</string>
             </property>
@@ -961,22 +932,6 @@
             </widget>
            </widget>
           </item>
-          <item>
-           <spacer name="vspJack">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
        </widget>
@@ -1011,6 +966,9 @@
           </property>
           <item>
            <layout class="QHBoxLayout" name="layDriverSet">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetNoConstraint</enum>
+            </property>
             <item>
              <widget class="QComboBox" name="cbxDriver">
               <property name="enabled">
@@ -1075,6 +1033,12 @@
           </item>
           <item>
            <widget class="QGroupBox" name="gbxDevice">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="title">
              <string>Device</string>
             </property>
@@ -1214,6 +1178,12 @@
            <layout class="QHBoxLayout" name="layDriverH">
             <item>
              <widget class="QGroupBox" name="gbxProps">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="title">
                <string>Properties</string>
               </property>
@@ -1545,22 +1515,6 @@
             </item>
            </layout>
           </item>
-          <item>
-           <spacer name="vspDriver">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
        </widget>
@@ -1818,38 +1772,9 @@
                 </property>
                </widget>
               </item>
-              <item>
-               <spacer name="vspPrefs">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>1</width>
-                  <height>1</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
              </layout>
             </widget>
            </widget>
-          </item>
-          <item>
-           <spacer name="vspSystem">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>1</width>
-              <height>1</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>

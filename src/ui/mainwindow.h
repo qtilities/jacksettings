@@ -16,13 +16,8 @@
 #pragma once
 
 #include "src/settings.h"
-
 #include <QMainWindow>
-#include <QRadioButton>
-#include <QSystemTrayIcon>
-
 #include <jack/jack.h>
-
 #include <array>
 
 QT_BEGIN_NAMESPACE
@@ -31,6 +26,8 @@ QT_END_NAMESPACE
 
 class ServiceControl;
 class DebugLogger;
+class QRadioButton;
+class QSystemTrayIcon;
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -47,7 +44,6 @@ private:
 	void closeEvent(QCloseEvent *);
 
 	void createTrayIcon();
-	void iconActivated(QSystemTrayIcon::ActivationReason reason);
 
 	void loadSettings();
 	void saveSettings();
@@ -79,6 +75,9 @@ private:
 
 	void enumerateProfiles();
 
+	void createAutostartFile();
+	void deleteAutostartFile();
+
 	Ui::MainWindow *ui;
 
 	QAction         *actA2j;
@@ -91,7 +90,6 @@ private:
 	std::array<QRadioButton *, 2> grpClockSource;
 	std::array<QRadioButton *, 5> grpAutoConnect;
 
-	ServiceControl *appService;
 	ServiceControl *jackService;
 	ServiceControl *a2jService;
 

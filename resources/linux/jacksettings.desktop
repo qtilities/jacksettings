@@ -4,5 +4,6 @@ Name=JACKSettings
 GenericName=JACK settings using jackd via systemd
 Comment=JACK settings using jackd via systemd
 Exec=jacksettings
-Icon=jacksettings
+Icon=/usr/share/jacksettings/icons/icon.png
 Categories=AudioVideo;Audio;Music;Midi;
+Terminal=false
