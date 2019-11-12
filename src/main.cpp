@@ -28,19 +28,19 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
-	if (!QSystemTrayIcon::isSystemTrayAvailable())
-	{
-		QMessageBox::critical(nullptr, QObject::tr("Systray"),
-													QObject::tr("I couldn't detect any system tray "
-																			"on this system."));
-			return 1;
-	}
-	QApplication::setQuitOnLastWindowClosed(false);
-
 	// Set application data also for settings
 	app.setOrganizationName("AZDrums");
 	app.setOrganizationDomain("azdrums.org");
 	app.setApplicationName("JACKSettings");
+
+	if (!QSystemTrayIcon::isSystemTrayAvailable())
+	{
+		QMessageBox::critical(nullptr, app.applicationName(),
+													QObject::tr("I couldn't detect any system tray "
+																			"on this system."));
+		return 1;
+	}
+	QApplication::setQuitOnLastWindowClosed(false);
 
 	// Load locale translation file if any
 	QTranslator translator;
