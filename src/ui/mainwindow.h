@@ -36,9 +36,7 @@ public:
 	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
 
-	void addXrun();
-
-	void setLogger(DebugLogger *);
+    void addXrun();
 
 private:
 	void closeEvent(QCloseEvent *);

@@ -2,22 +2,15 @@
 	From https://github.com/abranson/rockpool/blob/master/rockwork/servicecontrol.cpp
 */
 #include "servicecontrol.h"
-
-#include <QFile>
-#include <QDir>
-#include <QDebug>
-#include <QCoreApplication>
-#include <QProcess>
-#include <QDBusReply>
-
 #include <iostream>
+#include <QDBusReply>
 
 ServiceControl::ServiceControl(const QString &name, QObject *parent) : QObject(parent),
 	service("org.freedesktop.systemd1"),
 	serviceName(name),
 	systemd(new QDBusInterface(service, "/org/freedesktop/systemd1",
-														 "org.freedesktop.systemd1.Manager",
-														 QDBusConnection::sessionBus(), this)),
+             "org.freedesktop.systemd1.Manager",
+             QDBusConnection::sessionBus(), this)),
 	oldPid(0),
 	pid(0)
 {

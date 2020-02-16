@@ -70,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	icoTray(new QSystemTrayIcon(this)),
 	jackClient(nullptr),
 	xRunCount(0),
-	settings(new jack::Settings)
+    settings(new jack::Settings)
 {
 	ui->setupUi(this);
 
@@ -291,6 +291,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 	connect(ui->sbxBufferN,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 	connect(ui->sbxLatencyIn,  QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 	connect(ui->sbxLatencyOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+
+    txtLog = new DebugLogger(this, settings->profileName());
+    txtLog->setReadOnly(true);
+    txtLog->setParent(ui->tabLog);
+    txtLog->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    ui->layLog->addWidget(txtLog);
 
 	setCentralWidget(ui->centralwidget);
 	setWindowTitle(tr("JACK Settings"));
@@ -633,14 +639,6 @@ void MainWindow::addXrun()
 {
 	++xRunCount;
 	ui->lblXruns->setText(QString::number(xRunCount));
-}
-void MainWindow::setLogger(DebugLogger *logger)
-{
-	txtLog = logger;
-	txtLog->setReadOnly(true);
-	txtLog->setParent(ui->tabLog);
-	txtLog->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	ui->layLog->addWidget(txtLog);
 }
 void MainWindow::resetJackStatus()
 {

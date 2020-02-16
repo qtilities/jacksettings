@@ -20,8 +20,6 @@
 
 #include <alsa/asoundlib.h>
 
-#include <QProcess>
-
 #include <string.h>
 #include <cstdio>
 #include <vector>

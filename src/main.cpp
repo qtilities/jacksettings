@@ -14,8 +14,6 @@
 	For a full copy of the GNU General Public License see the LICENSE file
 */
 #include "ui/mainwindow.h"
-#include "ui/debuglogger.h"
-#include "src/debugstream.h"
 
 #include <iostream>
 
@@ -26,32 +24,28 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-	// Set application data also for settings
-	app.setOrganizationName("AZDrums");
-	app.setOrganizationDomain("azdrums.org");
-	app.setApplicationName("JACKSettings");
+    // Set application data also for settings
+    app.setOrganizationName("AZDrums");
+    app.setOrganizationDomain("azdrums.org");
+    app.setApplicationName("JACKSettings");
 
-	if (!QSystemTrayIcon::isSystemTrayAvailable())
-	{
-		QMessageBox::critical(nullptr, app.applicationName(),
-													QObject::tr("I couldn't detect any system tray "
-																			"on this system."));
-		return 1;
-	}
-	QApplication::setQuitOnLastWindowClosed(false);
+    if (!QSystemTrayIcon::isSystemTrayAvailable())
+    {
+        QMessageBox::critical(nullptr, app.applicationName(),
+            QObject::tr("I couldn't detect any system tray on this system."));
+        return 1;
+    }
+    QApplication::setQuitOnLastWindowClosed(false);
 
-	// Load locale translation file if any
-	QTranslator translator;
-	if (translator.load(QLocale(), QLatin1String("jacksettings"), QLatin1String("_"),
-											QLatin1String(":/translations")))
-			app.installTranslator(&translator);
+    // Load locale translation file if any
+    QTranslator translator;
+    if (translator.load(QLocale(), QLatin1String("jacksettings"), QLatin1String("_"),
+                        QLatin1String(":/translations")))
+        app.installTranslator(&translator);
 
-	DebugLogger *txtLog(new DebugLogger());
+    MainWindow window;
 
-	MainWindow window;
-	window.setLogger(txtLog);
-
-	return app.exec();
+    return app.exec();
 }

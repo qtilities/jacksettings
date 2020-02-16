@@ -31,7 +31,6 @@ SOURCES += src/main.cpp \
 					 src/ui/mainwindow.cpp \
 					 src/userinfo.cpp
 HEADERS += src/ui/mainwindow.h \
-					 src/debugstream.h \
 					 src/device.h \
 					 src/driver.h \
 					 src/sysinfo.h \
