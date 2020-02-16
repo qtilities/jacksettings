@@ -14,7 +14,6 @@
     For a full copy of the GNU General Public License see the LICENSE file
 */
 #include "debuglogger.h"
-#include "src/debugstream.h"
 
 #include <QContextMenuEvent>
 #include <QCoreApplication>
