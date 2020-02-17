@@ -13,31 +13,31 @@
 
     For a full copy of the GNU General Public License see the LICENSE file
 */
-#include "debuglogger.h"
+#include "servicelogger.h"
 
 #include <QContextMenuEvent>
 #include <QCoreApplication>
 #include <QMenu>
 
-DebugLogger::DebugLogger(QWidget *parent, QString settingsProfileName)
+ServiceLogger::ServiceLogger(QString unitName, QWidget *parent)
 :   QPlainTextEdit(parent),
     actClear(new QAction(QIcon::fromTheme("edit-clear"), tr("Clear"), this)),
     journalProcess(new QProcess(this))
 {
-    QString cmd = QString("journalctl -f -S today --user-unit jack@%1").arg(settingsProfileName);
+    QString cmd = QString("journalctl -f -S today --user-unit %1").arg(unitName);
     journalProcess->start(cmd);
 
     setLineWrapMode(QPlainTextEdit::NoWrap);
 
-    connect(actClear,       &QAction::triggered,  this, &DebugLogger::onClearTriggered);
-    connect(journalProcess, &QProcess::readyRead, this, &DebugLogger::onReadyRead);
+    connect(actClear,       &QAction::triggered,  this, &ServiceLogger::onClearTriggered);
+    connect(journalProcess, &QProcess::readyRead, this, &ServiceLogger::onReadyRead);
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit,
-        this, &DebugLogger::onAboutToQuit);
+        this, &ServiceLogger::onAboutToQuit);
 }
-DebugLogger::~DebugLogger()
+ServiceLogger::~ServiceLogger()
 {
 }
-void DebugLogger::contextMenuEvent(QContextMenuEvent *event)
+void ServiceLogger::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = createStandardContextMenu();
 
@@ -49,15 +49,15 @@ void DebugLogger::contextMenuEvent(QContextMenuEvent *event)
     menu->exec(event->globalPos());
     delete menu;
 }
-void DebugLogger::onAboutToQuit()
+void ServiceLogger::onAboutToQuit()
 {
     delete journalProcess;
 }
-void DebugLogger::onClearTriggered()
+void ServiceLogger::onClearTriggered()
 {
     clear();
 }
-void DebugLogger::onReadyRead()
+void ServiceLogger::onReadyRead()
 {
     while (journalProcess->canReadLine())
     {

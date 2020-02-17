@@ -25,7 +25,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class ServiceControl;
-class DebugLogger;
+class ServiceLogger;
 class QRadioButton;
 class QSystemTrayIcon;
 class MainWindow : public QMainWindow
@@ -83,7 +83,7 @@ private:
     QAction         *actQuit;
     QMenu           *mnuTray;
     QSystemTrayIcon *icoTray;
-    DebugLogger     *txtLog;
+    ServiceLogger     *txtLog;
 
     std::array<QRadioButton *, 2> grpClockSource;
     std::array<QRadioButton *, 5> grpAutoConnect;

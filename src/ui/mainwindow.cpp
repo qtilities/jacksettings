@@ -14,7 +14,7 @@
     For a full copy of the GNU General Public License see the LICENSE file
 */
 #include "mainwindow.h"
-#include "debuglogger.h"
+#include "servicelogger.h"
 #include "ui_mainwindow.h"
 #include "src/servicecontrol.h"
 #include "src/userinfo.h"
@@ -222,8 +222,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
         updateJackStatus();
     }
-    jackService = new ServiceControl("jack@" + settings->profileName() + ".service", this);
-    a2jService  = new ServiceControl("a2jmidi@" + settings->profileName() + ".service", this);
+    QString jackSvcName = "jack@"    + settings->profileName() + ".service";
+    QString a2jSvcName  = "a2jmidi@" + settings->profileName() + ".service";
+    jackService = new ServiceControl(jackSvcName, this);
+    a2jService  = new ServiceControl(a2jSvcName,  this);
     enumerateProfiles();
     updateJackSettingsUI();
     updateDriverSettingsUI();
@@ -292,7 +294,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(ui->sbxLatencyIn,  QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
     connect(ui->sbxLatencyOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 
-    txtLog = new DebugLogger(this, settings->profileName());
+    txtLog = new ServiceLogger(jackSvcName, this);
     txtLog->setReadOnly(true);
     txtLog->setParent(ui->tabLog);
     txtLog->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

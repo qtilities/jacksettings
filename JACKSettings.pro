@@ -22,22 +22,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += src/main.cpp \
-					 src/device.cpp \
-					 src/driver.cpp \
-					 src/sysinfo.cpp \
-					 src/servicecontrol.cpp \
-					 src/settings.cpp \
-					 src/ui/debuglogger.cpp \
-					 src/ui/mainwindow.cpp \
-					 src/userinfo.cpp
+           src/device.cpp \
+           src/driver.cpp \
+           src/sysinfo.cpp \
+           src/servicecontrol.cpp \
+           src/settings.cpp \
+           src/ui/servicelogger.cpp \
+           src/ui/mainwindow.cpp \
+           src/userinfo.cpp
 HEADERS += src/ui/mainwindow.h \
-					 src/device.h \
-					 src/driver.h \
-					 src/sysinfo.h \
-					 src/servicecontrol.h \
-					 src/settings.h \
-					 src/ui/debuglogger.h \
-					 src/userinfo.h
+           src/device.h \
+           src/driver.h \
+           src/sysinfo.h \
+           src/servicecontrol.h \
+           src/settings.h \
+           src/ui/servicelogger.h \
+           src/userinfo.h
 FORMS   += src/ui/mainwindow.ui
 
 INCLUDEPATH += $$_PRO_FILE_PWD_/external/CLI11/include
@@ -50,30 +50,30 @@ TRANSLATIONS += resources/translations/jacksettings_it.ts
 
 # Default rules for deployment.
 qnx {
-	target.path = /tmp/$${TARGET}/bin
+    target.path = /tmp/$${TARGET}/bin
 }
 unix:!android {
-		desktop.files = resources/linux/$${TARGET}.desktop
-		desktop.path  = /usr/share/applications/
+    desktop.files = resources/linux/$${TARGET}.desktop
+    desktop.path  = /usr/share/applications/
 
-		icon.files = resources/icons/icon.png
-		icon.path  = /usr/share/$${TARGET}/icons/
+    icon.files = resources/icons/icon.png
+    icon.path  = /usr/share/$${TARGET}/icons/
 
-		translations.files = resources/translations/*.qm
-		translations.path  = /usr/share/$${TARGET}/translations/
+    translations.files = resources/translations/*.qm
+    translations.path  = /usr/share/$${TARGET}/translations/
 
-		target.files = $${TARGET}
-		target.path  = /usr/bin
+    target.files = $${TARGET}
+    target.path  = /usr/bin
 
-		INSTALLS += desktop icon translations target
+    INSTALLS += desktop icon translations target
 }
 win32 {
-		RC_FILE = resources/icons/icon.rc
+    RC_FILE = resources/icons/icon.rc
 }
 mac {
-		CONFIG += app_bundle
-		ICON    = resources/icons/icon.icns
+    CONFIG += app_bundle
+    ICON    = resources/icons/icon.icns
 }
 DISTFILES += .editorconfig \
-						 README.md \
-						 TODO.md
+             README.md \
+             TODO.md

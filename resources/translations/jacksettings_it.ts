@@ -2,14 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="it_IT">
 <context>
-    <name>DebugLogger</name>
-    <message>
-        <location filename="../../src/ui/debuglogger.cpp" line="25"/>
-        <source>Clear</source>
-        <translation>Pulisci</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../src/ui/mainwindow.ui" line="46"/>
@@ -472,51 +464,51 @@
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="296"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="304"/>
         <source>JACK Settings</source>
         <translation>Impostazioni JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="418"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="450"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="426"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="458"/>
         <source>Started</source>
         <translation>Avviato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="421"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="453"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="429"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="461"/>
         <source>Stop</source>
         <translation>Ferma</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="424"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="432"/>
         <source>Stop JACK Server</source>
         <translation>Ferma Server JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="432"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="460"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="440"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="468"/>
         <source>Stopped</source>
         <translation>Fermato</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="435"/>
-        <location filename="../../src/ui/mainwindow.cpp" line="463"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="443"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="471"/>
         <source>Start</source>
         <translation>Avvia</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="438"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="446"/>
         <source>Start JACK Server</source>
         <translation>Avvia Server JACK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="456"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="464"/>
         <source>Stop ALSA Bridge</source>
         <translation>Ferma ALSA Bridge</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="466"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="474"/>
         <source>Start ALSA Bridge</source>
         <translation>Avvia ALSA Bridge</translation>
     </message>
@@ -524,9 +516,17 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="39"/>
+        <location filename="../../src/main.cpp" line="37"/>
         <source>I couldn&apos;t detect any system tray on this system.</source>
         <translation>Non riesco a rilevare alcuna system tray in questo sistema.</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceLogger</name>
+    <message>
+        <location filename="../../src/ui/servicelogger.cpp" line="24"/>
+        <source>Clear</source>
+        <translation>Pulisci</translation>
     </message>
 </context>
 <context>

@@ -18,13 +18,13 @@
 #include <QPlainTextEdit>
 #include <QProcess>
 
-class DebugLogger : public QPlainTextEdit
+class ServiceLogger : public QPlainTextEdit
 {
     Q_OBJECT
 
 public:
-    DebugLogger(QWidget *parent = nullptr, QString settingsProfileName = "default");
-    ~DebugLogger();
+    ServiceLogger(QString unitName, QWidget *parent = nullptr);
+    ~ServiceLogger();
 
 private:
     void contextMenuEvent(QContextMenuEvent *);
