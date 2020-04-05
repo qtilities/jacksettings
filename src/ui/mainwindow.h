@@ -17,29 +17,30 @@
 
 #include "src/settings.h"
 #include <QMainWindow>
-#include <jack/jack.h>
 #include <array>
+#include <jack/jack.h>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class ServiceControl;
 class ServiceLogger;
 class QRadioButton;
 class QSystemTrayIcon;
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QSystemTrayIcon* icon, QWidget* parent = nullptr);
     ~MainWindow();
 
     void addXrun();
 
 private:
-    void closeEvent(QCloseEvent *);
+    void closeEvent(QCloseEvent*);
 
     void createTrayIcon();
 
@@ -69,30 +70,30 @@ private:
     void updateJackSettings();
     void updateDriverSettings();
 
-    void setOsPixmap(const QString &osName);
+    void setOsPixmap(const QString& osName);
 
     void enumerateProfiles();
 
     void createAutostartFile();
     void deleteAutostartFile();
 
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
 
-    QAction         *actA2j;
-    QAction         *actJack;
-    QAction         *actQuit;
-    QMenu           *mnuTray;
-    QSystemTrayIcon *icoTray;
-    ServiceLogger     *txtLog;
+    QAction* actA2j;
+    QAction* actJack;
+    QAction* actQuit;
+    QMenu* mnuTray;
+    QSystemTrayIcon* icoTray;
+    ServiceLogger* txtLog;
 
-    std::array<QRadioButton *, 2> grpClockSource;
-    std::array<QRadioButton *, 5> grpAutoConnect;
+    std::array<QRadioButton*, 2> grpClockSource;
+    std::array<QRadioButton*, 5> grpAutoConnect;
 
-    ServiceControl *jackService;
-    ServiceControl *a2jService;
+    ServiceControl* jackService;
+    ServiceControl* a2jService;
 
-    jack_client_t *jackClient;
-    int               xRunCount;
+    jack_client_t* jackClient;
+    int xRunCount;
 
     typedef QSharedPointer<jack::Settings> settingsPtr;
     settingsPtr settings;

@@ -15,10 +15,10 @@
 */
 #include "mainwindow.h"
 #include "servicelogger.h"
-#include "ui_mainwindow.h"
 #include "src/servicecontrol.h"
-#include "src/userinfo.h"
 #include "src/sysinfo.h"
+#include "src/userinfo.h"
+#include "ui_mainwindow.h"
 
 #include <QCloseEvent>
 #include <QDir>
@@ -32,45 +32,46 @@
 
 #include <iostream>
 
-static int onSampleRateChanged(jack_nframes_t nframes, void *arg)
+static int onSampleRateChanged(jack_nframes_t nframes, void* arg)
 {
     if (arg == nullptr)
         return 0;
 
-    auto label = (QLabel *)arg;
+    auto label = (QLabel*)arg;
     std::cerr << "ℹ Sample rate changed to " << nframes << ".\n";
     label->setText(QString::number(nframes));
     return 0;
 }
-static int onBufferSizeChanged(jack_nframes_t nframes, void *arg)
+static int onBufferSizeChanged(jack_nframes_t nframes, void* arg)
 {
     if (arg == nullptr)
         return 0;
 
-    auto label = (QLabel *)arg;
+    auto label = (QLabel*)arg;
     std::cerr << "ℹ Buffer size changed to " << nframes << ".\n";
     label->setText(QString::number(nframes));
     return 0;
 }
-static int onXrun(void *arg) // FIXME: onXrun() doesn't work, need documentation
+static int onXrun(void* arg) // FIXME: onXrun() doesn't work, need documentation
 {
     if (arg == nullptr)
         return 0;
 
-    auto mainWindow = (MainWindow *)arg;
+    auto mainWindow = (MainWindow*)arg;
     mainWindow->addXrun();
     return 0;
 }
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    actA2j(new QAction(this)),
-    actJack(new QAction(this)),
-    actQuit(new QAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this)),
-    mnuTray(new QMenu(this)),
-    icoTray(new QSystemTrayIcon(this)),
-    jackClient(nullptr),
-    xRunCount(0),
-    settings(new jack::Settings)
+MainWindow::MainWindow(QSystemTrayIcon* icon, QWidget* parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+    , actA2j(new QAction(this))
+    , actJack(new QAction(this))
+    , actQuit(new QAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this))
+    , mnuTray(new QMenu(this))
+    , icoTray(icon)
+    , jackClient(nullptr)
+    , xRunCount(0)
+    , settings(new jack::Settings)
 {
     ui->setupUi(this);
 
@@ -138,8 +139,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->cbxDevIn->addItem(tr("None"));
     ui->cbxDevOut->addItem(tr("None"));
     ui->cbxDriver->setCurrentIndex(settings->driverType());
-    for (int i = 0; i < settings->deviceCount(); ++i)
-    {
+    for (int i = 0; i < settings->deviceCount(); ++i) {
         QString text("hw:" + settings->deviceCardIdAt(i)); // TODO: add device/card index
         ui->cbxDevice->addItem(text);
         ui->cbxDevIn->addItem(text);
@@ -153,16 +153,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 #ifdef Q_OS_LINUX
     QString governor;
     bool hasPerformance = false;
-    for (QString gov: sysInfo.governors())
-    {
+    for (QString gov : sysInfo.governors()) {
         governor = gov;
-        if (governor == "performance")
-        {
+        if (governor == "performance") {
             hasPerformance = true;
             continue;
-        }
-        else
-        {
+        } else {
             hasPerformance = false;
             break;
         }
@@ -194,27 +190,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     jack_status_t jackStatus;
     jackClient = jack_client_open("JACKSettings", JackNullOption, &jackStatus);
-    if (!jackClient)
-    {
+    if (!jackClient) {
         std::cerr << "⚠ Could not open JACK client.\n";
-    }
-    else
-    {
-        if (jack_set_buffer_size_callback(jackClient, onBufferSizeChanged, ui->lblBufSize) != 0)
-        {
+    } else {
+        if (jack_set_buffer_size_callback(jackClient, onBufferSizeChanged, ui->lblBufSize) != 0) {
             std::cerr << "⚠ Could not set buffer size callback.\n";
         }
-        if (jack_set_sample_rate_callback(jackClient, onSampleRateChanged, ui->lblSampleRate) != 0)
-        {
+        if (jack_set_sample_rate_callback(jackClient, onSampleRateChanged, ui->lblSampleRate) != 0) {
             std::cerr << "⚠ Could not set sample rate callback.\n";
         }
-        if (jack_set_xrun_callback(jackClient, onXrun, this) != 0)
-        {
+        if (jack_set_xrun_callback(jackClient, onXrun, this) != 0) {
             std::cerr << "⚠ Could not set XRun callback.\n";
         }
-        if (jackStatus & JackNameNotUnique)
-        {
-            std::string name_= jack_get_client_name(jackClient);
+        if (jackStatus & JackNameNotUnique) {
+            std::string name_ = jack_get_client_name(jackClient);
             std::cerr << "ℹ Name was taken: changed to " << name_ << '\n';
         }
         if (jackStatus & JackServerStarted)
@@ -222,76 +211,75 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
         updateJackStatus();
     }
-    QString jackSvcName = "jack@"    + settings->profileName() + ".service";
-    QString a2jSvcName  = "a2jmidi@" + settings->profileName() + ".service";
+    QString jackSvcName = "jack@" + settings->profileName() + ".service";
+    QString a2jSvcName = "a2jmidi@" + settings->profileName() + ".service";
     jackService = new ServiceControl(jackSvcName, this);
-    a2jService  = new ServiceControl(a2jSvcName,  this);
+    a2jService = new ServiceControl(a2jSvcName, this);
     enumerateProfiles();
     updateJackSettingsUI();
     updateDriverSettingsUI();
     setEnabledButtons(false);
 
-    connect(actA2j,  &QAction::triggered, this, &MainWindow::onA2jStartStop);
+    connect(actA2j, &QAction::triggered, this, &MainWindow::onA2jStartStop);
     connect(actJack, &QAction::triggered, this, &MainWindow::onJackStartStop);
     connect(actQuit, &QAction::triggered, qApp, &QCoreApplication::quit);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::onAboutToQuit);
 
     connect(ui->pbnCancel, &QPushButton::clicked, this, &MainWindow::onClickedCancel);
-    connect(ui->pbnReset,  &QPushButton::clicked, this, &MainWindow::onClickedReset);
-    connect(ui->pbnSave,   &QPushButton::clicked, this, &MainWindow::onClickedSave);
+    connect(ui->pbnReset, &QPushButton::clicked, this, &MainWindow::onClickedReset);
+    connect(ui->pbnSave, &QPushButton::clicked, this, &MainWindow::onClickedSave);
 
     connect(jackService, &ServiceControl::sigActiveStateChanged,
-                    this, &MainWindow::onJackActiveStateChanged);
+        this, &MainWindow::onJackActiveStateChanged);
     onJackActiveStateChanged();
 
     connect(ui->tbnStartJack, &QToolButton::clicked,
-                    this, &MainWindow::onJackStartStop);
+        this, &MainWindow::onJackStartStop);
 
     connect(a2jService, &ServiceControl::sigActiveStateChanged,
-                    this, &MainWindow::onA2jActiveStateChanged);
+        this, &MainWindow::onA2jActiveStateChanged);
     onA2jActiveStateChanged();
 
     connect(ui->tbnStartA2j, &QToolButton::clicked, this, &MainWindow::onA2jStartStop);
 
     connect(icoTray, &QSystemTrayIcon::activated,
-                    [=](QSystemTrayIcon::ActivationReason reason)
-    {
-    if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
-        setVisible(!isVisible());
-    });
-    connect(ui->rbnSystem,     &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->rbnHpet,       &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+        [=](QSystemTrayIcon::ActivationReason reason) {
+            if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
+                setVisible(!isVisible());
+        });
+    connect(ui->rbnSystem, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->rbnHpet, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
     connect(ui->rbnNoRestrict, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->rbnFailExt,    &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->rbnIgnoreExt,  &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->rbnFailAll,    &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->rbnIgnoreAll,  &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkRealtime,   &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkSvrSync,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkTemporary,  &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkVerbose,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxTimeout,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxPortMax,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxRtPrio,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->rbnFailExt, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->rbnIgnoreExt, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->rbnFailAll, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->rbnIgnoreAll, &QRadioButton::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkRealtime, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkSvrSync, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkTemporary, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkVerbose, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxTimeout, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxPortMax, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxRtPrio, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 
-    connect(ui->cbxDevice,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->cbxDevIn,      QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->cbxDevOut,     QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->cbxDevice, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->cbxDevIn, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->cbxDevOut, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
     connect(ui->cbxSampleRate, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->cbxBufSize,    QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->cbxDithMode,   QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->cbxBufSize, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->cbxDithMode, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
     connect(ui->cbxMidiDriver, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->chkDuplex,     &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkMonitor,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkMonitorHw,  &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkMeterHw,    &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->chkSoftMode,   &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkDuplex, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkMonitor, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkMonitorHw, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkMeterHw, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
+    connect(ui->chkSoftMode, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
     connect(ui->chkForce16Bit, &QCheckBox::clicked, this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxChanIn,     QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxChanOut,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxBufferN,    QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
-    connect(ui->sbxLatencyIn,  QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxChanIn, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxChanOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxBufferN, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
+    connect(ui->sbxLatencyIn, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
     connect(ui->sbxLatencyOut, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onSettingsChanged);
 
     txtLog = new ServiceLogger(jackSvcName, this);
@@ -307,13 +295,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 MainWindow::~MainWindow()
 {
 }
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent* event)
 {
 #ifdef Q_OS_OSX
-    if (!event->spontaneous() || !isVisible()) {return;}
+    if (!event->spontaneous() || !isVisible()) {
+        return;
+    }
 #endif
-    if (icoTray->isVisible())
-    {
+    if (icoTray->isVisible()) {
         hide();
         event->ignore();
     }
@@ -321,18 +310,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::onAboutToQuit()
 {
     ui->chkAutoStartJack->isChecked() ? jackService->enable() : jackService->disable();
-    ui->chkAutoStartA2j->isChecked()  ? a2jService->enable() : a2jService->disable();
-    ui->chkAutoStart->isChecked()     ? createAutostartFile() : deleteAutostartFile();
+    ui->chkAutoStartA2j->isChecked() ? a2jService->enable() : a2jService->disable();
+    ui->chkAutoStart->isChecked() ? createAutostartFile() : deleteAutostartFile();
     saveSettings();
 
-//  jack_client_close(jackClient);
+    //  jack_client_close(jackClient);
     delete ui;
 }
 void MainWindow::loadSettings()
 {
     QSettings qSettings(QSettings::IniFormat, QSettings::UserScope,
-                        QCoreApplication::organizationName(),
-                        QCoreApplication::applicationName());
+        QCoreApplication::organizationName(),
+        QCoreApplication::applicationName());
 
     qSettings.beginGroup("UI");
     resize(qSettings.value("Size", QSize(480, 600)).toSize());
@@ -341,7 +330,7 @@ void MainWindow::loadSettings()
     ui->chkMinimized->setChecked(qSettings.value("StartMinimized", false).toBool());
     setVisible(!ui->chkMinimized->isChecked());
     if (index < ui->tbwMain->count())
-            ui->tbwMain->setCurrentIndex(index);
+        ui->tbwMain->setCurrentIndex(index);
     qSettings.endGroup();
 
     qSettings.beginGroup("System");
@@ -355,15 +344,15 @@ void MainWindow::loadSettings()
 void MainWindow::saveSettings()
 {
     QSettings qSettings(QSettings::IniFormat, QSettings::UserScope,
-                        QCoreApplication::organizationName(),
-                        QCoreApplication::applicationName());
+        QCoreApplication::organizationName(),
+        QCoreApplication::applicationName());
 
     updateJackSettings();
     updateDriverSettings();
     settings->save();
 
     qSettings.beginGroup("UI");
-    qSettings.setValue("Size",     this->size());
+    qSettings.setValue("Size", this->size());
     qSettings.setValue("Position", this->pos());
     qSettings.setValue("TabIndex", ui->tbwMain->currentIndex());
     qSettings.setValue("StartMinimized", ui->chkMinimized->isChecked());
@@ -402,14 +391,11 @@ void MainWindow::setEnabledButtons(bool enable)
 }
 void MainWindow::onSettingsChanged()
 {
-    if (!ui->chkDuplex->isChecked())
-    {
+    if (!ui->chkDuplex->isChecked()) {
         ui->cbxDevIn->setEnabled(false);
         ui->cbxDevOut->setEnabled(false);
         ui->cbxDevice->setEnabled(true);
-    }
-    else
-    {
+    } else {
         ui->cbxDevIn->setEnabled(true);
         ui->cbxDevOut->setEnabled(true);
         if (ui->cbxDevIn->currentIndex() > 0 || ui->cbxDevOut->currentIndex() > 0)
@@ -421,8 +407,7 @@ void MainWindow::onSettingsChanged()
 }
 void MainWindow::onJackActiveStateChanged()
 {
-    if (jackService->isRunning())
-    {
+    if (jackService->isRunning()) {
         ui->lblStatusJack->setText(tr("Started"));
         ui->lblStatusJackIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
         ui->tbnStartJack->setIcon(QIcon::fromTheme("media-playback-stop"));
@@ -434,9 +419,7 @@ void MainWindow::onJackActiveStateChanged()
         setWindowIcon(QIcon(":/icons/icon.png"));
         icoTray->setIcon(QIcon(":/icons/icon.png"));
         updateJackStatus();
-    }
-    else
-    {
+    } else {
         ui->lblStatusJack->setText(tr("Stopped"));
         ui->lblStatusJackIcon->setPixmap(QIcon(":/icons/cancel.png").pixmap(QSize(16, 16)));
         ui->tbnStartJack->setIcon(QIcon::fromTheme("media-playback-start"));
@@ -453,8 +436,7 @@ void MainWindow::onJackActiveStateChanged()
 }
 void MainWindow::onA2jActiveStateChanged()
 {
-    if (a2jService->isRunning())
-    {
+    if (a2jService->isRunning()) {
         ui->lblStatusA2j->setText(tr("Started"));
         ui->lblStatusA2jIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
         ui->tbnStartA2j->setIcon(QIcon::fromTheme("media-playback-stop"));
@@ -462,9 +444,7 @@ void MainWindow::onA2jActiveStateChanged()
 
         actA2j->setIcon(QIcon::fromTheme("media-playback-stop"));
         actA2j->setText(tr("Stop ALSA Bridge"));
-    }
-    else
-    {
+    } else {
         ui->lblStatusA2j->setText(tr("Stopped"));
         ui->lblStatusA2jIcon->setPixmap(QIcon(":/icons/cancel.png").pixmap(QSize(16, 16)));
         ui->tbnStartA2j->setIcon(QIcon::fromTheme("media-playback-start"));
@@ -498,23 +478,21 @@ void MainWindow::updateDriverSettingsUI()
 {
     int bufferSize = settings->period();
     for (int index = 0; index < ui->cbxBufSize->count(); ++index) {
-        if (ui->cbxBufSize->itemText(index) == QString::number(bufferSize))
-        {
+        if (ui->cbxBufSize->itemText(index) == QString::number(bufferSize)) {
             ui->cbxBufSize->setCurrentIndex(index);
             break;
         }
     }
     int sampleRate = settings->sampleRate();
     for (int index = 0; index < ui->cbxSampleRate->count(); ++index) {
-        if (ui->cbxSampleRate->itemText(index) == QString::number(sampleRate))
-        {
+        if (ui->cbxSampleRate->itemText(index) == QString::number(sampleRate)) {
             ui->cbxSampleRate->setCurrentIndex(index);
             break;
         }
     }
-//ui->cbxDevice->setCurrentIndex(0); TODO: Load device from config file
-//ui->cbxDevIn->setCurrentIndex(0);
-//ui->cbxDevOut->setCurrentIndex(0);
+    //ui->cbxDevice->setCurrentIndex(0); TODO: Load device from config file
+    //ui->cbxDevIn->setCurrentIndex(0);
+    //ui->cbxDevOut->setCurrentIndex(0);
     ui->sbxChanIn->setValue(settings->inputChannelCount());
     ui->sbxChanOut->setValue(settings->outputChannelCount());
     ui->chkDuplex->setChecked(settings->isDuplex());
@@ -532,14 +510,12 @@ void MainWindow::updateDriverSettingsUI()
 void MainWindow::updateJackSettings()
 {
     for (size_t i = 0; i < grpClockSource.size(); ++i)
-        if (grpClockSource.at(i)->isChecked())
-        {
+        if (grpClockSource.at(i)->isChecked()) {
             settings->setClockSource(static_cast<jack::Settings::ClockSource>(i));
             break;
         }
     for (size_t i = 0; i < grpAutoConnect.size(); ++i)
-        if (grpAutoConnect.at(i)->isChecked())
-        {
+        if (grpAutoConnect.at(i)->isChecked()) {
             settings->setAutoConnectMode(static_cast<jack::Settings::AutoConnectMode>(i));
             break;
         }
@@ -553,11 +529,9 @@ void MainWindow::updateJackSettings()
 }
 void MainWindow::updateDriverSettings()
 {
-    jack::Driver::DitherMode ditherMode =
-        static_cast<jack::Driver::DitherMode>(ui->cbxDithMode->currentIndex());
+    jack::Driver::DitherMode ditherMode = static_cast<jack::Driver::DitherMode>(ui->cbxDithMode->currentIndex());
 
-    jack::Driver::AlsaMidiType alsaMidiType =
-        static_cast<jack::Driver::AlsaMidiType>(ui->cbxMidiDriver->currentIndex());
+    jack::Driver::AlsaMidiType alsaMidiType = static_cast<jack::Driver::AlsaMidiType>(ui->cbxMidiDriver->currentIndex());
 
     if (ui->cbxDevIn->currentIndex() > 0 && ui->chkDuplex->isChecked())
         settings->setDeviceInputName(ui->cbxDevIn->currentText());
@@ -586,7 +560,7 @@ void MainWindow::updateDriverSettings()
     settings->setOutputLatency(ui->sbxLatencyOut->value());
     settings->setAlsaMidiType(alsaMidiType);
 }
-void MainWindow::setOsPixmap(const QString &osName)
+void MainWindow::setOsPixmap(const QString& osName)
 {
 #ifdef Q_OS_LINUX
     if (osName == "ArchLinux")
@@ -600,21 +574,20 @@ void MainWindow::enumerateProfiles()
     QStringList filters;
     filters << "*.conf";
     QStringList configFiles(configDir.entryList(filters, QDir::Files, QDir::Name));
-    for (QString fileName: configFiles)
+    for (QString fileName : configFiles)
         ui->cbxProfile->addItem(fileName.replace(".conf", ""));
 
     // If no profiles found then is a first run, create a default config
-    if (configFiles.empty())
-    {
+    if (configFiles.empty()) {
         if (settings->save())
             enumerateProfiles();
     }
 }
 void MainWindow::createAutostartFile()
 {
-    QDir    configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+    QDir configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
     QString filePath(configDir.filePath("autostart/jacksettings.desktop"));
-    QFile   file(filePath);
+    QFile file(filePath);
 
     if (file.exists() || !file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
@@ -628,9 +601,9 @@ void MainWindow::createAutostartFile()
 }
 void MainWindow::deleteAutostartFile()
 {
-    QDir    configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+    QDir configDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
     QString filePath(configDir.filePath("autostart/jacksettings.desktop"));
-    QFile   file(filePath);
+    QFile file(filePath);
 
     if (!file.exists())
         return;

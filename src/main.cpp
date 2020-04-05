@@ -22,30 +22,25 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    QApplication::setQuitOnLastWindowClosed(false);
 
-    // Set application data also for settings
     app.setOrganizationName("AZDrums");
     app.setOrganizationDomain("azdrums.org");
     app.setApplicationName("JACKSettings");
 
-    if (!QSystemTrayIcon::isSystemTrayAvailable())
-    {
-        QMessageBox::critical(nullptr, app.applicationName(),
-            QObject::tr("I couldn't detect any system tray on this system."));
-        return 1;
-    }
-    QApplication::setQuitOnLastWindowClosed(false);
+    QIcon icon = QIcon(":/icons/icon.png");
+    QSystemTrayIcon* trayIcon = new QSystemTrayIcon(icon, &app);
+    trayIcon->setVisible(true);
 
-    // Load locale translation file if any
     QTranslator translator;
     if (translator.load(QLocale(), QLatin1String("jacksettings"), QLatin1String("_"),
-                        QLatin1String(":/translations")))
+            QLatin1String(":/translations")))
         app.installTranslator(&translator);
 
-    MainWindow window;
+    MainWindow window(trayIcon);
 
     return app.exec();
 }
