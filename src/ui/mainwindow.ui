@@ -1820,10 +1820,6 @@
          <property name="text">
           <string>&amp;Reset</string>
          </property>
-         <property name="icon">
-          <iconset resource="../../resources/resources.qrc">
-           <normaloff>:/icons/clean.png</normaloff>:/icons/clean.png</iconset>
-         </property>
         </widget>
        </item>
        <item>
@@ -1844,20 +1840,12 @@
          <property name="text">
           <string>&amp;Cancel</string>
          </property>
-         <property name="icon">
-          <iconset resource="../../resources/resources.qrc">
-           <normaloff>:/icons/cancel.png</normaloff>:/icons/cancel.png</iconset>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pbnSave">
          <property name="text">
           <string>&amp;Save</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../resources/resources.qrc">
-           <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
          </property>
          <property name="default">
           <bool>true</bool>
@@ -1870,8 +1858,6 @@
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../../resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

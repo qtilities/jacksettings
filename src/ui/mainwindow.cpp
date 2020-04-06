@@ -83,6 +83,10 @@ MainWindow::MainWindow(QSystemTrayIcon* icon, QWidget* parent)
     icoTray->setContextMenu(mnuTray);
     icoTray->show();
 
+    ui->pbnCancel->setIcon(QIcon(":/icons/cancel.png"));
+    ui->pbnReset->setIcon(QIcon::fromTheme("edit-clear", QIcon(":/icons/edit-clear.png")));
+    ui->pbnSave->setIcon(QIcon::fromTheme("document-save", QIcon(":/icons/document-save.png")));
+
     grpAutoConnect = {
         ui->rbnNoRestrict,
         ui->rbnFailExt,
@@ -163,17 +167,19 @@ MainWindow::MainWindow(QSystemTrayIcon* icon, QWidget* parent)
             break;
         }
     }
+    QIcon icoWarn(QIcon::fromTheme("dialog-warning", QIcon(":/icons/dialog-warning.png")));
+
     if (hasPerformance)
         ui->lblGovernorIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
     else
-        ui->lblGovernorIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
+        ui->lblGovernorIcon->setPixmap(icoWarn.pixmap(QSize(16, 16)));
 
     ui->lblGovernor->setText(governor);
 
     if (sysInfo.isRealtime())
         ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/check.png").pixmap(QSize(16, 16)));
     else
-        ui->lblKernelVerIcon->setPixmap(QIcon(":/icons/warning.png").pixmap(QSize(16, 16)));
+        ui->lblKernelVerIcon->setPixmap(icoWarn.pixmap(QSize(16, 16)));
 #endif
     ui->lblOS->setText(sysInfo.name());
     setOsPixmap(sysInfo.name());
@@ -428,8 +434,8 @@ void MainWindow::onJackActiveStateChanged()
         actJack->setIcon(QIcon::fromTheme("media-playback-start"));
         actJack->setText(tr("Start JACK Server"));
 
-        setWindowIcon(QIcon(":/icons/off.png"));
-        icoTray->setIcon(QIcon(":/icons/off.png"));
+        setWindowIcon(QIcon(":/icons/icon-off.png"));
+        icoTray->setIcon(QIcon(":/icons/icon-off.png"));
         resetJackStatus();
         updateJackSettingsUI();
     }
